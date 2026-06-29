@@ -31,6 +31,12 @@ npm run dev
 
 Then open the local URL printed by Vite.
 
+## Live Preview
+
+The preview app is deployed to GitHub Pages on every push to `main`:
+
+https://wanghuanlab.github.io/ui-style-pilot/
+
 ## Recommended Workflow
 
 1. Read `docs/frontend-standards/USAGE.md`.

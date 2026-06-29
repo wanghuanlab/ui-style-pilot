@@ -41,9 +41,16 @@ const workflow = [
         shared UI standards, component reuse, and review workflows.
       </p>
       <div class="hero-actions">
-        <a href="https://github.com/" target="_blank" rel="noreferrer">Prepare GitHub repo</a>
-        <a class="secondary" href="https://github.com/" target="_blank" rel="noreferrer">
-          Publish the docs
+        <a href="https://github.com/wanghuanlab/ui-style-pilot" target="_blank" rel="noreferrer">
+          View on GitHub
+        </a>
+        <a
+          class="secondary"
+          href="https://wanghuanlab.github.io/ui-style-pilot/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Open live preview
         </a>
       </div>
     </section>
