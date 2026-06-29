@@ -1,0 +1,198 @@
+:root {
+  --primary: #005bac;
+  --primary-hover: #004892;
+  --primary-active: #002f61;
+  --accent: #55c4f1;
+  --success: #00a85a;
+  --warning: #f6ad55;
+  --error: #dc3c3a;
+  --text-primary: rgba(0, 0, 0, 0.85);
+  --text-secondary: rgba(0, 0, 0, 0.65);
+  --text-tertiary: rgba(0, 0, 0, 0.45);
+  --border: rgba(0, 0, 0, 0.15);
+  --bg-page: #f2f2f2;
+  --bg-card: #ffffff;
+  --bg-soft: #eaf1f9;
+  --font:
+    "Source Han Sans SC", "Noto Sans SC", "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial,
+    sans-serif;
+  font-family: var(--font);
+  color: var(--text-primary);
+  background: var(--bg-page);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg-page);
+}
+
+a {
+  color: inherit;
+}
+
+.app-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.hero,
+.panel,
+.workflow {
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+}
+
+.hero {
+  padding: 48px;
+  border-top: 4px solid var(--primary);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 16px;
+  font-size: clamp(40px, 8vw, 72px);
+  line-height: 1;
+}
+
+h2 {
+  margin-bottom: 0;
+  font-size: 24px;
+  line-height: 1.35;
+}
+
+h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.hero-copy {
+  max-width: 760px;
+  color: var(--text-secondary);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.hero-actions a {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.hero-actions a:hover {
+  background: var(--primary-hover);
+}
+
+.hero-actions .secondary {
+  background: #fff;
+  color: var(--primary);
+}
+
+.panel,
+.workflow {
+  margin-top: 24px;
+  padding: 32px;
+}
+
+.section-heading {
+  margin-bottom: 24px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  min-height: 184px;
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  background: linear-gradient(180deg, #fff, #f8fbfe);
+}
+
+.card p {
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+code {
+  display: inline-block;
+  max-width: 100%;
+  padding: 4px 8px;
+  overflow-wrap: anywhere;
+  border-radius: 4px;
+  background: var(--bg-soft);
+  color: var(--primary-active);
+  font-size: 12px;
+}
+
+.workflow ol {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.workflow li::marker {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    width: min(100% - 24px, 1120px);
+    padding: 24px 0;
+  }
+
+  .hero,
+  .panel,
+  .workflow {
+    padding: 24px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
