@@ -1,16 +1,16 @@
-# DsPageHeader
+# UspPageHeader
 
 ## 基本信息
 
 | 项 | 内容 |
 |---|---|
 | Pattern | Standard Page Header |
-| Implementation | `DsPageHeader` |
+| Implementation | `UspPageHeader` |
 | 类型 | `layout` |
 | 状态 | `stable` |
-| 当前路径 | `src/components/layout/DsPageHeader.vue` |
+| 当前路径 | `src/components/layout/UspPageHeader.vue` |
 
-`DsPageHeader` 用于承载后台页面的面包屑、页面标题、标题补充信息和页面级操作，是 `DsPage` 的标准 `header` 内容。
+`UspPageHeader` 用于承载后台页面的面包屑、页面标题、标题补充信息和页面级操作，是 `UspPage` 的标准 `header` 内容。
 
 ## 适用场景
 
@@ -53,7 +53,7 @@
 
 ```vue
 <template>
-    <DsPageHeader
+    <UspPageHeader
         title="项目概览"
         :breadcrumbs="[
             { title: '首页' },
@@ -64,7 +64,7 @@
         <template #actions>
             <a-button type="primary" size="small">搜索</a-button>
         </template>
-    </DsPageHeader>
+    </UspPageHeader>
 </template>
 ```
 
@@ -72,19 +72,19 @@
 
 - 页面标题不得在页面主体内重复实现。
 - 面包屑应准确反映页面层级，不要堆叠过多无效层级。
-- 页面级主操作放入 `actions`，表格级操作放入 `DsTableToolbar`。
+- 页面级主操作放入 `actions`，表格级操作放入 `UspTableToolbar`。
 - 不在业务页面通过局部样式覆盖标题字号、面包屑颜色、页头背景。
-- 不把筛选区、表格工具栏或统计卡片放进 `DsPageHeader`。
+- 不把筛选区、表格工具栏或统计卡片放进 `UspPageHeader`。
 
 ## 迁移建议
 
 从历史页面迁移时：
 
-1. 将原页面面包屑和标题合并到 `DsPageHeader`。
+1. 将原页面面包屑和标题合并到 `UspPageHeader`。
 2. 将页面级按钮迁移到 `actions` 插槽。
 3. 删除页面内重复的标题、面包屑和页头背景样式。
-4. 表格相关操作迁移到 `DsTableToolbar`，不要放在页头里。
+4. 表格相关操作迁移到 `UspTableToolbar`，不要放在页头里。
 
 ## AI 使用要求
 
-AI 新增或迁移后台页面时，必须优先使用 `DsPageHeader` 表达页面标题和面包屑。不得在页面内重复写标题区域样式，除非该页面属于大屏、登录页或特殊视觉页面。
+AI 新增或迁移后台页面时，必须优先使用 `UspPageHeader` 表达页面标题和面包屑。不得在页面内重复写标题区域样式，除非该页面属于大屏、登录页或特殊视觉页面。

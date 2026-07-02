@@ -1,13 +1,13 @@
-# DsTabContent
+# UspTabContent
 
 ## 组件定位
 
-`DsTabContent` 用于承载 `DsTabs` 内部的内容区、工具栏和业务表格区域，解决历史页面中 `tab-content`、`tab-toolbar`、搜索框、按钮组间距各自实现的问题。
+`UspTabContent` 用于承载 `UspTabs` 内部的内容区、工具栏和业务表格区域，解决历史页面中 `tab-content`、`tab-toolbar`、搜索框、按钮组间距各自实现的问题。
 
 ## Pattern 与实现名
 
 - Pattern: Standard Tab Content
-- Implementation: `DsTabContent`
+- Implementation: `UspTabContent`
 - 类型: `layout`
 - 状态: `draft`
 
@@ -19,12 +19,12 @@
 
 ## 不适用场景
 
-- 独立列表页的搜索和表格组合，优先使用 `DsSearchPanel`、`DsTableToolbar`、`DsDataTable`。
-- 页面级分区标题和操作区，优先使用 `DsSection`。
+- 独立列表页的搜索和表格组合，优先使用 `UspSearchPanel`、`UspTableToolbar`、`UspDataTable`。
+- 页面级分区标题和操作区，优先使用 `UspSection`。
 
 ## 交互规范
 
-- Tab 内容区不额外制造卡片边框，边界由外层 `DsTabs` 承担。
+- Tab 内容区不额外制造卡片边框，边界由外层 `UspTabs` 承担。
 - 工具栏采用左右分布、自动换行，按钮和搜索控件保持 28px 紧凑高度。
 - 内容区内表格、表单、按钮组不得使用内联 `style` 控制宽度、高度、颜色和间距。
 
@@ -45,8 +45,8 @@
 ## 使用示例
 
 ```vue
-<DsTabs v-model:active-key="activeKey" :items="tabs" tight>
-    <DsTabContent compact>
+<UspTabs v-model:active-key="activeKey" :items="tabs" tight>
+    <UspTabContent compact>
         <template #toolbar>
             <a-space>
                 <a-button type="primary" size="small">新建</a-button>
@@ -54,16 +54,16 @@
             </a-space>
         </template>
 
-        <DsDataTable :columns="columns" :data-source="dataSource" />
-    </DsTabContent>
-</DsTabs>
+        <UspDataTable :columns="columns" :data-source="dataSource" />
+    </UspTabContent>
+</UspTabs>
 ```
 
 ## 设计与编码约束
 
 - 必须使用 Token，不允许在页面内重新写 Tab 内容区颜色、边框、字号、间距。
-- 新页面优先使用 `DsTabContent` 的 `toolbar` slot，不再新增页面级 `.tab-toolbar` 样式。
-- 旧页面迁移时，可以先用 `DsTabContent` 包裹历史内容，让兼容样式接管工具栏视觉，再逐步替换内部表格和控件。
+- 新页面优先使用 `UspTabContent` 的 `toolbar` slot，不再新增页面级 `.tab-toolbar` 样式。
+- 旧页面迁移时，可以先用 `UspTabContent` 包裹历史内容，让兼容样式接管工具栏视觉，再逐步替换内部表格和控件。
 
 ## 迁移建议
 
@@ -79,10 +79,10 @@
 建议迁移为：
 
 ```vue
-<DsTabContent compact>
+<UspTabContent compact>
     <template #toolbar>...</template>
-    <DsDataTable />
-</DsTabContent>
+    <UspDataTable />
+</UspTabContent>
 ```
 
-迁移初期也可以先保留历史结构并包裹在 `DsTabContent` 中，但后续应逐步移除页面内自写的 `tab-content`、`tab-toolbar` 样式。
+迁移初期也可以先保留历史结构并包裹在 `UspTabContent` 中，但后续应逐步移除页面内自写的 `tab-content`、`tab-toolbar` 样式。

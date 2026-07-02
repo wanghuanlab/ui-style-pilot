@@ -18,7 +18,7 @@ Read these before creating or changing components:
 5. `../../../frontend-standards/components/README.md`
 6. `../../../frontend-standards/09-review-checklist.md`
 
-When changing or using a documented `Ds*` component, also read that component's document under `../../../frontend-standards/components/`.
+When changing or using a documented `Usp*` component, also read that component's document under `../../../frontend-standards/components/`.
 
 ## Component-First Workflow
 
@@ -42,7 +42,7 @@ rg -n "Search|Filter|Toolbar|Table|Drawer|Modal|Pagination|Status|Tag|Scaffold|L
    - Extract a repeated pattern into a new public component.
    - Use page-local implementation only when the pattern is truly one-off.
 5. Check `docs/frontend-standards/components/` for a documented Pattern before implementing shared UI.
-6. If creating a new standards-aligned public component, use the `Ds*` naming convention and place it according to the target long-term structure:
+6. If creating a new standards-aligned public component, use the `Usp*` naming convention and place it according to the target long-term structure:
 
 ```text
 src/components/base/
@@ -56,46 +56,46 @@ If the structure does not exist yet, propose the placement before editing.
 
 Historical root-level components should not be moved or renamed as part of normal component extraction. Keep them exported from `src/components/index.ts` and migrate page usage gradually.
 
-Every reusable `Ds*` component should have a component standard document before it is marked `stable`.
+Every reusable `Usp*` component should have a component standard document before it is marked `stable`.
 
-## Ds Component Priority
+## Usp Component Priority
 
 The first extraction target is the standard backend list-page skeleton:
 
 | Component | Directory | Purpose |
 |---|---|---|
-| `DsPage` | `layout` | Standard page shell |
-| `DsPageHeader` | `layout` | Title, breadcrumb, and page actions |
-| `DsSection` | `layout` | Page section container |
-| `DsSearchPanel` | `business` | Standard list-page search area |
-| `DsTableToolbar` | `business` | Main actions, batch actions, table tools |
-| `DsDataTable` | `business` | Table, selection, pagination, loading, empty state |
-| `DsColumnConfigDrawer` | `business` | Column visibility and order configuration |
-| `DsFormDrawer` | `business` | Create, edit, and view form drawer |
-| `DsButton` | `base` | Button wrapper only when project-level behavior needs it |
-| `DsCompactInput` | `base` | 28px compact input for search and table-tool areas |
-| `DsCompactSelect` | `base` | 28px compact select for search and table-tool areas |
-| `DsCompactDatePicker` | `base` | 28px compact date picker for search areas |
-| `DsCompactRangePicker` | `base` | 28px compact date range picker for search areas |
-| `DsIconButton` | `base` | Icon-only tool buttons |
-| `DsStatusTag` | `base` | Unified status label and color semantics |
-| `DsEmptyState` | `base` | Unified empty state |
-| `DsLoadingState` | `feedback` | Page or section loading state |
-| `DsResultState` | `feedback` | Success, failure, no-permission, or exception result state |
+| `UspPage` | `layout` | Standard page shell |
+| `UspPageHeader` | `layout` | Title, breadcrumb, and page actions |
+| `UspSection` | `layout` | Page section container |
+| `UspSearchPanel` | `business` | Standard list-page search area |
+| `UspTableToolbar` | `business` | Main actions, batch actions, table tools |
+| `UspDataTable` | `business` | Table, selection, pagination, loading, empty state |
+| `UspColumnConfigDrawer` | `business` | Column visibility and order configuration |
+| `UspFormDrawer` | `business` | Create, edit, and view form drawer |
+| `UspButton` | `base` | Button wrapper only when project-level behavior needs it |
+| `UspCompactInput` | `base` | 28px compact input for search and table-tool areas |
+| `UspCompactSelect` | `base` | 28px compact select for search and table-tool areas |
+| `UspCompactDatePicker` | `base` | 28px compact date picker for search areas |
+| `UspCompactRangePicker` | `base` | 28px compact date range picker for search areas |
+| `UspIconButton` | `base` | Icon-only tool buttons |
+| `UspStatusTag` | `base` | Unified status label and color semantics |
+| `UspEmptyState` | `base` | Unified empty state |
+| `UspLoadingState` | `feedback` | Page or section loading state |
+| `UspResultState` | `feedback` | Success, failure, no-permission, or exception result state |
 
-Do not start by creating generic wrappers for every Ant Design Vue field control such as `DsInput`, `DsSelect`, or `DsDatePicker`. Use Ant Design Vue directly unless multiple pages have a stable, repeated, project-specific behavior that justifies a shared wrapper.
+Do not start by creating generic wrappers for every Ant Design Vue field control such as `UspInput`, `UspSelect`, or `UspDatePicker`. Use Ant Design Vue directly unless multiple pages have a stable, repeated, project-specific behavior that justifies a shared wrapper.
 
-For list search or table-tool compact fields, use `DsCompactInput`, `DsCompactSelect`, `DsCompactDatePicker`, and `DsCompactRangePicker`. These are 28px compact controls and must not be used as general edit-form controls.
+For list search or table-tool compact fields, use `UspCompactInput`, `UspCompactSelect`, `UspCompactDatePicker`, and `UspCompactRangePicker`. These are 28px compact controls and must not be used as general edit-form controls.
 
-For standard backend page shells, use `DsPage` and `DsPageHeader` first and read `../../../frontend-standards/components/DsPage.md` and `../../../frontend-standards/components/DsPageHeader.md`. Do not recreate page background, breadcrumb, title, or page-level action areas inside a business page.
+For standard backend page shells, use `UspPage` and `UspPageHeader` first and read `../../../frontend-standards/components/UspPage.md` and `../../../frontend-standards/components/UspPageHeader.md`. Do not recreate page background, breadcrumb, title, or page-level action areas inside a business page.
 
-For standard table toolbars, use `DsTableToolbar` first and read `../../../frontend-standards/components/DsTableToolbar.md`. Do not recreate refresh, density, column-config buttons, selected-count display, or toolbar alignment styles inside a page.
+For standard table toolbars, use `UspTableToolbar` first and read `../../../frontend-standards/components/UspTableToolbar.md`. Do not recreate refresh, density, column-config buttons, selected-count display, or toolbar alignment styles inside a page.
 
-For standard data tables, use `DsDataTable` first and read `../../../frontend-standards/components/DsDataTable.md`. Do not recreate table header styling, zebra rows, loading, empty state, or pagination footer inside a page.
+For standard data tables, use `UspDataTable` first and read `../../../frontend-standards/components/UspDataTable.md`. Do not recreate table header styling, zebra rows, loading, empty state, or pagination footer inside a page.
 
-For semantic status display, use `DsStatusTag` first and read `../../../frontend-standards/components/DsStatusTag.md`. Do not hardcode status tag colors inside a page.
+For semantic status display, use `UspStatusTag` first and read `../../../frontend-standards/components/UspStatusTag.md`. Do not hardcode status tag colors inside a page.
 
-For table column visibility, ordering, or column-setting drawers, use `DsColumnConfigDrawer` first and read `../../../frontend-standards/components/DsColumnConfigDrawer.md`. Do not recreate column-transfer or column-sort drawer logic inside a page.
+For table column visibility, ordering, or column-setting drawers, use `UspColumnConfigDrawer` first and read `../../../frontend-standards/components/UspColumnConfigDrawer.md`. Do not recreate column-transfer or column-sort drawer logic inside a page.
 
 ## Public Component Standards
 

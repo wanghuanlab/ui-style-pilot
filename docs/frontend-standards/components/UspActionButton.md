@@ -1,13 +1,13 @@
-# DsActionButton
+# UspActionButton
 
 ## 组件定位
 
-`DsActionButton` 用于统一系统内高频操作按钮的文案、图标、按钮类型、危险态和尺寸，避免不同页面对“导出、列配置、新建、删除”等同类动作重复实现出不同视觉。
+`UspActionButton` 用于统一系统内高频操作按钮的文案、图标、按钮类型、危险态和尺寸，避免不同页面对“导出、列配置、新建、删除”等同类动作重复实现出不同视觉。
 
 ## Pattern 与实现名
 
 - Pattern: Semantic Action Button
-- Implementation: `DsActionButton`
+- Implementation: `UspActionButton`
 - 类型: `base`
 - 状态: `draft`
 
@@ -50,7 +50,7 @@
 
 | 属性 | 类型 | 默认值 | 说明 |
 |---|---|---|---|
-| `action` | `DsActionButtonAction` | 必填 | 标准动作语义 |
+| `action` | `UspActionButtonAction` | 必填 | 标准动作语义 |
 | `label` | `string` | 动作默认文案 | 覆盖显示文案 |
 | `type` | Ant ButtonType | 动作默认类型 | 覆盖按钮类型 |
 | `danger` | `boolean` | 动作默认危险态 | 覆盖危险态 |
@@ -63,16 +63,16 @@
 ## 使用示例
 
 ```vue
-<DsActionButton action="add" @click="handleAdd" />
-<DsActionButton action="export" @click="handleExport" />
-<DsActionButton action="column-config" icon-only @click="openColumnConfig" />
-<DsActionButton action="submit" label="送审" @click="handleSubmit" />
+<UspActionButton action="add" @click="handleAdd" />
+<UspActionButton action="export" @click="handleExport" />
+<UspActionButton action="column-config" icon-only @click="openColumnConfig" />
+<UspActionButton action="submit" label="送审" @click="handleSubmit" />
 ```
 
 ## 设计与编码约束
 
 - 新页面不得直接手写新建、编辑、删除、导入、导出、列配置、查询、重置、保存、取消等标准动作按钮。
-- 工具栏内标准动作必须优先使用 `DsActionButton`。
+- 工具栏内标准动作必须优先使用 `UspActionButton`。
 - 同一动作不得在不同页面随意更换图标或按钮类型。
 - 每个工具栏区域原则上最多一个主按钮。
 - 行内操作优先文字链接，不强制使用图标按钮。
@@ -88,5 +88,5 @@
 迁移为：
 
 ```vue
-<DsActionButton action="export" @click="handleExport" />
+<UspActionButton action="export" @click="handleExport" />
 ```

@@ -73,6 +73,6 @@ src/components/
 
 迁移完成前，AI 和开发者应优先搜索并复用现有组件：
 
-详细组件盘点见 `10-component-inventory.md`。已沉淀为稳定规范的 `Ds*` 组件见 `components/README.md`。
+详细组件盘点见 `10-component-inventory.md`。已沉淀为稳定规范的 `Usp*` 组件见 `components/README.md`。
 
 如果已有组件不能满足需求，应优先扩展公共组件能力，而不是在业务页面复制一套相似实现。

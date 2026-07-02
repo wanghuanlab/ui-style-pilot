@@ -1,22 +1,22 @@
-# DsPage
+# UspPage
 
 ## 基本信息
 
 | 项 | 内容 |
 |---|---|
 | Pattern | Standard Page Shell |
-| Implementation | `DsPage` |
+| Implementation | `UspPage` |
 | 类型 | `layout` |
 | 状态 | `stable` |
-| 当前路径 | `src/components/layout/DsPage.vue` |
+| 当前路径 | `src/components/layout/UspPage.vue` |
 
-`DsPage` 是后台页面的标准外壳，负责页面背景、纵向布局、内容滚动区域和页面主体节奏。它通常与 `DsPageHeader`、`DsSearchPanel`、`DsTableToolbar`、`DsDataTable` 组成标准列表页。
+`UspPage` 是后台页面的标准外壳，负责页面背景、纵向布局、内容滚动区域和页面主体节奏。它通常与 `UspPageHeader`、`UspSearchPanel`、`UspTableToolbar`、`UspDataTable` 组成标准列表页。
 
 ## 适用场景
 
 - 后台列表页、台账页、报表页、查询页。
 - 需要统一页面背景、页头和主体滚动行为的业务页面。
-- 新页面或历史页面迁移到 `Ds*` 组件范式时的页面根容器。
+- 新页面或历史页面迁移到 `Usp*` 组件范式时的页面根容器。
 
 ## 不适用场景
 
@@ -42,47 +42,47 @@
 
 | Slot | 用途 |
 |---|---|
-| `header` | 页面页头，通常放置 `DsPageHeader` |
+| `header` | 页面页头，通常放置 `UspPageHeader` |
 | `default` | 页面主体内容 |
 
 ## 使用示例
 
 ```vue
 <template>
-    <DsPage>
+    <UspPage>
         <template #header>
-            <DsPageHeader title="项目概览" :breadcrumbs="breadcrumbs" />
+            <UspPageHeader title="项目概览" :breadcrumbs="breadcrumbs" />
         </template>
 
-        <DsSearchPanel />
-        <DsTableToolbar />
-        <DsDataTable />
-    </DsPage>
+        <UspSearchPanel />
+        <UspTableToolbar />
+        <UspDataTable />
+    </UspPage>
 </template>
 ```
 
 ## 设计与编码约束
 
-- 新增后台业务页面优先使用 `DsPage` 作为根容器。
+- 新增后台业务页面优先使用 `UspPage` 作为根容器。
 - 页面不得重复定义全局背景、主体滚动和页面级 padding。
-- 不在 `DsPage` 内写业务数据、接口请求或路由逻辑。
+- 不在 `UspPage` 内写业务数据、接口请求或路由逻辑。
 - 特殊页面确需不同背景或滚动方式时，应先说明业务原因，再通过扩展组件能力处理。
 
 ## 与列表页组件的协作
 
-- `DsPageHeader` 放在 `header` 插槽。
-- `DsSearchPanel`、`DsTableToolbar`、`DsDataTable` 放在默认插槽，并由页面或组件自身控制标准间距。
-- `DsPage` 只负责页面外壳，不负责筛选、工具栏、表格和分页逻辑。
+- `UspPageHeader` 放在 `header` 插槽。
+- `UspSearchPanel`、`UspTableToolbar`、`UspDataTable` 放在默认插槽，并由页面或组件自身控制标准间距。
+- `UspPage` 只负责页面外壳，不负责筛选、工具栏、表格和分页逻辑。
 
 ## 迁移建议
 
 从历史页面迁移时：
 
 1. 先保留原页面业务逻辑和接口调用。
-2. 用 `DsPage` 替换页面最外层布局容器。
-3. 将原页面标题、面包屑、操作迁移到 `DsPageHeader`。
+2. 用 `UspPage` 替换页面最外层布局容器。
+3. 将原页面标题、面包屑、操作迁移到 `UspPageHeader`。
 4. 删除页面内重复的背景、滚动、外层 padding 样式。
 
 ## AI 使用要求
 
-AI 新增或迁移后台业务页面时，必须优先使用 `DsPage` 承载页面外壳。除非是登录页、大屏页或明确的特殊布局页面，否则不得在业务页面内重复实现页面背景和主体滚动结构。
+AI 新增或迁移后台业务页面时，必须优先使用 `UspPage` 承载页面外壳。除非是登录页、大屏页或明确的特殊布局页面，否则不得在业务页面内重复实现页面背景和主体滚动结构。

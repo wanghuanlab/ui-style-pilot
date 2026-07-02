@@ -10,11 +10,11 @@
 |---|---|
 | `docs/frontend-standards/00-design-source.md` | 平台视觉规范到后台系统的映射，是上游设计依据 |
 | `docs/frontend-standards/` | 前端视觉、布局、组件、交互、编码、AI 生成约束 |
-| `docs/frontend-standards/components/` | `Ds*` 组件规范资产，记录组件 Pattern、API、交互和迁移建议 |
+| `docs/frontend-standards/components/` | `Usp*` 组件规范资产，记录组件 Pattern、API、交互和迁移建议 |
 | `src/root.scss` | 当前项目的全局 CSS Token 和基础样式 |
 | `src/components/index.ts` | 公共组件统一导出入口 |
 | `src/components/` | 项目已有公共组件 |
-| `src/components/base|business|layout|feedback` | 新 `Ds*` 规范组件目录 |
+| `src/components/base|business|layout|feedback` | 新 `Usp*` 规范组件目录 |
 | `src/views/` | 业务页面 |
 | `src/layouts/` | 系统布局外壳 |
 
@@ -27,7 +27,7 @@
 3. `04-component-rules.md`：知道哪些组件和控件不能重复造。
 4. `05-form-rules.md`：知道表单、属性名和值、冒号和字段间距怎么统一。
 5. `06-coding-rules.md`：知道哪些写法禁止。
-6. `components/README.md`：知道哪些 `Ds*` 组件已有稳定规范。
+6. `components/README.md`：知道哪些 `Usp*` 组件已有稳定规范。
 7. `10-component-inventory.md`：知道现在已有组件能做什么。
 8. `08-page-templates.md`：开发页面时按模板套结构。
 9. `09-review-checklist.md`：提交前按清单自查。
@@ -73,7 +73,7 @@ rg -n "Search|Filter|Toolbar|Table|Drawer|Modal|Pagination|Status|Tag|Scaffold|L
 新页面优先从统一入口导入：
 
 ```ts
-import { DsPage, DsSearchPanel, DsDataTable, DsColumnConfigDrawer } from "@/components";
+import { UspPage, UspSearchPanel, UspDataTable, UspColumnConfigDrawer } from "@/components";
 ```
 
 历史页面已有的组件可以逐步迁移，不需要一次性替换：
@@ -84,11 +84,11 @@ import { PageScaffold, ColumnConfigDrawer, DictTag } from "@/components";
 
 如果已有组件能满足 80% 需求，优先复用或扩展，不要在页面里重新写一套相似结构。
 
-如果已有组件不能满足需求，先判断是否应抽象为 `Ds*` 公共组件。标准列表页优先沉淀页面壳、搜索区、工具栏、表格、列配置、状态标签、表单抽屉和空状态，不要急着封装 `Input`、`Select` 这类 Ant Design Vue 已经提供的基础控件。
+如果已有组件不能满足需求，先判断是否应抽象为 `Usp*` 公共组件。标准列表页优先沉淀页面壳、搜索区、工具栏、表格、列配置、状态标签、表单抽屉和空状态，不要急着封装 `Input`、`Select` 这类 Ant Design Vue 已经提供的基础控件。
 
-如果要使用或修改已经文档化的 `Ds*` 组件，必须先阅读 `docs/frontend-standards/components/` 下的对应组件规范。例如列配置先读 `components/DsColumnConfigDrawer.md`。
+如果要使用或修改已经文档化的 `Usp*` 组件，必须先阅读 `docs/frontend-standards/components/` 下的对应组件规范。例如列配置先读 `components/UspColumnConfigDrawer.md`。
 
-遇到表单、详情属性区、审批查看区时，优先阅读 `05-form-rules.md` 和 `components/DsFormLayout.md`，并使用 `DsFormSection`、`DsFormGrid`、`DsFormItem`、`DsReadonlyField`、`DsFormActions`，不要在页面里手写字段冒号和间距。
+遇到表单、详情属性区、审批查看区时，优先阅读 `05-form-rules.md` 和 `components/UspFormLayout.md`，并使用 `UspFormSection`、`UspFormGrid`、`UspFormItem`、`UspReadonlyField`、`UspFormActions`，不要在页面里手写字段冒号和间距。
 
 ### 3.3 推荐页面骨架
 
@@ -218,13 +218,13 @@ PageScaffold
 
 优先使用：
 
-- `DsPage`
-- `DsPageHeader`
-- `DsSearchPanel`
-- `DsTableToolbar`
-- `DsDataTable`
-- `DsStatusTag`
-- `DsColumnConfigDrawer`
+- `UspPage`
+- `UspPageHeader`
+- `UspSearchPanel`
+- `UspTableToolbar`
+- `UspDataTable`
+- `UspStatusTag`
+- `UspColumnConfigDrawer`
 
 历史页面如果暂时无法迁移，可以保留：
 
@@ -327,7 +327,7 @@ rg -n ":deep\\(\\.ant-|:deep\\(\\.el-" src/views src/components src/layouts
 1. 先读 `USAGE.md` 和 `README.md`。
 2. 找一个已完成页面，对照 `09-review-checklist.md` 做一次审查练习。
 3. 打开 `10-component-inventory.md`，认识当前已有公共组件。
-4. 打开 `components/README.md`，了解哪些 `Ds*` 组件已有稳定规范。
+4. 打开 `components/README.md`，了解哪些 `Usp*` 组件已有稳定规范。
 5. 新增小页面时强制从 `@/components` 导入公共组件。
 6. 每次提交前贴一次 AI 审查提示词，让 AI 帮你做规范复核。
 

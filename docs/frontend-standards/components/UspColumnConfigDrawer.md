@@ -1,23 +1,23 @@
-# DsColumnConfigDrawer
+# UspColumnConfigDrawer
 
 ## 基本信息
 
 | 项 | 内容 |
 |---|---|
 | Pattern | Table Column Configuration Drawer |
-| Implementation | `DsColumnConfigDrawer` |
+| Implementation | `UspColumnConfigDrawer` |
 | 类型 | `business` |
 | 状态 | `stable` |
-| 当前路径 | `src/components/business/DsColumnConfigDrawer.vue` |
+| 当前路径 | `src/components/business/UspColumnConfigDrawer.vue` |
 | 默认宽度 | `720` |
 
-`DsColumnConfigDrawer` 用于承载后台列表页、报表页、台账页中的表格列配置能力，让用户可以调整列的显示、隐藏和展示顺序。
+`UspColumnConfigDrawer` 用于承载后台列表页、报表页、台账页中的表格列配置能力，让用户可以调整列的显示、隐藏和展示顺序。
 
 ## 适用场景
 
 - 表格列数量较多，用户需要按角色、习惯或任务临时调整显示字段。
 - 后台列表页、报表页、数据台账页需要列显示配置。
-- 页面已经使用或准备迁移到 `DsDataTable`、`DsTableToolbar` 等标准列表页组件。
+- 页面已经使用或准备迁移到 `UspDataTable`、`UspTableToolbar` 等标准列表页组件。
 - 需要保留少量必选字段，同时允许其他字段自由配置。
 
 ## 不适用场景
@@ -68,7 +68,7 @@
 
 ```vue
 <template>
-    <DsColumnConfigDrawer
+    <UspColumnConfigDrawer
         v-model:open="columnConfigOpen"
         v-model:selected-keys="visibleColumnKeys"
         :columns="columnOptions"
@@ -80,7 +80,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import DsColumnConfigDrawer from "@/components/business/DsColumnConfigDrawer.vue";
+import UspColumnConfigDrawer from "@/components/business/UspColumnConfigDrawer.vue";
 
 const columnConfigOpen = ref(false);
 const requiredColumnKeys = ["projectName"];
@@ -102,7 +102,7 @@ function handleColumnConfigSave(keys: string[]) {
 ## 设计与编码约束
 
 - 页面不得重复实现列配置抽屉。
-- 新增或迁移列配置能力时，优先使用 `DsColumnConfigDrawer`。
+- 新增或迁移列配置能力时，优先使用 `UspColumnConfigDrawer`。
 - 不允许在业务页面通过内联 `style` 修改抽屉布局。
 - 不允许在业务页面硬编码列配置抽屉的颜色、字号、间距、圆角。
 - 组件内部视觉应使用项目 Token，例如 `var(--primary)`、`var(--border-default)`、`var(--text-primary)`。
@@ -111,8 +111,8 @@ function handleColumnConfigSave(keys: string[]) {
 
 ## 与列表页组件的协作
 
-- 入口通常放在 `DsTableToolbar` 的列设置按钮中。
-- 列配置结果用于控制 `DsDataTable` 或页面表格 columns。
+- 入口通常放在 `UspTableToolbar` 的列设置按钮中。
+- 列配置结果用于控制 `UspDataTable` 或页面表格 columns。
 - 状态标签、分页、搜索区等能力不应写进本组件。
 
 ## 迁移建议

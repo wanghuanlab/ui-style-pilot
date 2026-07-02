@@ -39,11 +39,11 @@
 - [ ] 是否重复实现了分页。
 - [ ] 是否重复实现了状态标签。
 - [ ] 是否重复实现了列配置。
-- [ ] 标准动作按钮是否优先使用 `DsActionButton`。
-- [ ] 表单和属性区是否优先使用 `DsFormSection`、`DsFormGrid`、`DsFormItem`、`DsReadonlyField`、`DsFormActions`。
+- [ ] 标准动作按钮是否优先使用 `UspActionButton`。
+- [ ] 表单和属性区是否优先使用 `UspFormSection`、`UspFormGrid`、`UspFormItem`、`UspReadonlyField`、`UspFormActions`。
 - [ ] 新增通用能力是否沉淀为公共组件。
-- [ ] 已文档化 `Ds*` 组件的 API、交互或用途变更是否同步更新组件规范。
-- [ ] 表格列配置是否优先使用 `DsColumnConfigDrawer`，而不是页面内重复实现。
+- [ ] 已文档化 `Usp*` 组件的 API、交互或用途变更是否同步更新组件规范。
+- [ ] 表格列配置是否优先使用 `UspColumnConfigDrawer`，而不是页面内重复实现。
 
 ## 交互
 

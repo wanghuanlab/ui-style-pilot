@@ -1,18 +1,18 @@
-# DsFormLayout
+# UspFormLayout
 
 ## 组件定位
 
-`DsFormSection`、`DsFormGrid`、`DsFormItem`、`DsReadonlyField`、`DsFormActions` 共同承载项目统一的表单和属性区视觉范式。
+`UspFormSection`、`UspFormGrid`、`UspFormItem`、`UspReadonlyField`、`UspFormActions` 共同承载项目统一的表单和属性区视觉范式。
 
 Pattern: Standard Form Field Layout
 
 Implementation:
 
-- `DsFormSection`
-- `DsFormGrid`
-- `DsFormItem`
-- `DsReadonlyField`
-- `DsFormActions`
+- `UspFormSection`
+- `UspFormGrid`
+- `UspFormItem`
+- `UspReadonlyField`
+- `UspFormActions`
 
 Status: `draft`
 
@@ -25,9 +25,9 @@ Status: `draft`
 
 ## 不适用场景
 
-- 页面顶部查询条件，优先使用 `DsSearchPanel`。
+- 页面顶部查询条件，优先使用 `UspSearchPanel`。
 - 表格内联编辑单元格，优先由表格组件或单元格渲染器控制。
-- 富文本、上传、复杂树选择等特殊控件区域，可以放入 `DsFormItem` 内部，但特殊控件本身不由本组件负责。
+- 富文本、上传、复杂树选择等特殊控件区域，可以放入 `UspFormItem` 内部，但特殊控件本身不由本组件负责。
 
 ## 交互规范
 
@@ -39,7 +39,7 @@ Status: `draft`
 
 ## API 规范
 
-### DsFormGrid
+### UspFormGrid
 
 | Prop | 类型 | 默认值 | 说明 |
 |---|---|---|---|
@@ -47,7 +47,7 @@ Status: `draft`
 | `labelWidth` | `string` | `112px` | label 宽度 |
 | `dense` | `boolean` | `false` | 是否使用更紧凑间距 |
 
-### DsFormItem
+### UspFormItem
 
 | Prop | 类型 | 默认值 | 说明 |
 |---|---|---|---|
@@ -58,7 +58,7 @@ Status: `draft`
 | `error` | `string` | `""` | 错误提示 |
 | `full` | `boolean` | `false` | 是否跨满整行 |
 
-### DsReadonlyField
+### UspReadonlyField
 
 | Prop | 类型 | 默认值 | 说明 |
 |---|---|---|---|
@@ -68,7 +68,7 @@ Status: `draft`
 | `colon` | `boolean` | `true` | 是否显示冒号 |
 | `full` | `boolean` | `false` | 是否跨满整行 |
 
-### DsFormActions
+### UspFormActions
 
 | Prop | 类型 | 默认值 | 说明 |
 |---|---|---|---|
@@ -77,19 +77,19 @@ Status: `draft`
 ## 使用示例
 
 ```vue
-<DsFormSection title="项目信息">
-    <DsFormGrid :columns="4" label-width="128px">
-        <DsFormItem label="是否集团数字化项目">
-            <a-radio-group v-model:value="form.isGroupDigital" size="small">
+<UspFormSection title="项目信息">
+    <UspFormGrid :columns="4" label-width="128px">
+        <UspFormItem label="是否重点项目">
+            <a-radio-group v-model:value="form.isKeyProject" size="small">
                 <a-radio value="否">否</a-radio>
                 <a-radio value="是">是</a-radio>
             </a-radio-group>
-        </DsFormItem>
-        <DsFormItem label="集团立项编号">
-            <DsCompactInput v-model:value="form.groupProjectNo" placeholder="请输入" />
-        </DsFormItem>
-    </DsFormGrid>
-</DsFormSection>
+        </UspFormItem>
+        <UspFormItem label="项目编号">
+            <UspCompactInput v-model:value="form.projectNo" placeholder="请输入" />
+        </UspFormItem>
+    </UspFormGrid>
+</UspFormSection>
 ```
 
 ## 设计与编码约束
@@ -104,7 +104,7 @@ Status: `draft`
 旧写法：
 
 ```vue
-<a-form-item label="集团立项编号">
+<a-form-item label="项目编号">
     <a-input size="small" />
 </a-form-item>
 ```
@@ -112,7 +112,7 @@ Status: `draft`
 新写法：
 
 ```vue
-<DsFormItem label="集团立项编号">
-    <DsCompactInput v-model:value="form.groupProjectNo" placeholder="请输入" />
-</DsFormItem>
+<UspFormItem label="项目编号">
+    <UspCompactInput v-model:value="form.projectNo" placeholder="请输入" />
+</UspFormItem>
 ```

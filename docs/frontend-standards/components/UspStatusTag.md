@@ -1,23 +1,23 @@
-# DsStatusTag
+# UspStatusTag
 
 ## 基本信息
 
 | 项 | 内容 |
 |---|---|
 | Pattern | Semantic Status Tag |
-| Implementation | `DsStatusTag` |
+| Implementation | `UspStatusTag` |
 | 类型 | `base` |
 | 状态 | `stable` |
-| 当前路径 | `src/components/base/DsStatusTag.vue` |
+| 当前路径 | `src/components/base/UspStatusTag.vue` |
 
-`DsStatusTag` 用于统一展示业务状态、审批状态、启停状态和处理状态，避免各页面自行定义状态颜色和标签样式。
+`UspStatusTag` 用于统一展示业务状态、审批状态、启停状态和处理状态，避免各页面自行定义状态颜色和标签样式。
 
 ## 适用场景
 
 - 表格状态列。
 - 详情页中的状态字段。
 - 审批、启停、完成、异常等语义明确的状态展示。
-- 与 `DsDataTable` 的 `bodyCell` slot 配合展示状态列。
+- 与 `UspDataTable` 的 `bodyCell` slot 配合展示状态列。
 
 ## 不适用场景
 
@@ -56,8 +56,8 @@
 
 ```vue
 <template>
-    <DsStatusTag label="已下达" tone="success" />
-    <DsStatusTag :status="enabled" />
+    <UspStatusTag label="已下达" tone="success" />
+    <UspStatusTag :status="enabled" />
 </template>
 ```
 
@@ -66,7 +66,7 @@
 - 页面不得自行硬编码状态颜色。
 - 状态颜色必须服务语义，不得为了视觉差异随意新增颜色。
 - 不要只依赖颜色表达状态，标签文案必须清晰。
-- 表格状态列优先使用 `DsStatusTag`。
+- 表格状态列优先使用 `UspStatusTag`。
 - 如出现新的稳定状态语义，应先扩展 tone 或状态映射，并同步更新本文档。
 
 ## 迁移建议
@@ -75,9 +75,9 @@
 
 1. 先梳理状态文案和业务语义。
 2. 将成功、警示、错误、默认状态映射到 `tone`。
-3. 表格列中通过 `DsDataTable` 的 `bodyCell` slot 渲染 `DsStatusTag`。
+3. 表格列中通过 `UspDataTable` 的 `bodyCell` slot 渲染 `UspStatusTag`。
 4. 删除页面内重复的状态色、圆角、背景和边框样式。
 
 ## AI 使用要求
 
-AI 新增或迁移状态展示时，必须优先使用 `DsStatusTag`。不得在页面内硬编码成功、警示、错误、处理中等状态标签颜色。
+AI 新增或迁移状态展示时，必须优先使用 `UspStatusTag`。不得在页面内硬编码成功、警示、错误、处理中等状态标签颜色。

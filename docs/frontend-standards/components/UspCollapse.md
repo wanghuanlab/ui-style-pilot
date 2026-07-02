@@ -1,16 +1,16 @@
-# DsCollapse
+# UspCollapse
 
 ## 基本信息
 
 | 项 | 内容 |
 |---|---|
 | Pattern | Standard Form Collapse |
-| Implementation | `DsCollapse` |
+| Implementation | `UspCollapse` |
 | 类型 | `layout` |
 | 状态 | `draft` |
-| 当前路径 | `src/components/layout/DsCollapse.vue` |
+| 当前路径 | `src/components/layout/UspCollapse.vue` |
 
-`DsCollapse` 用于表单页和详情页的可折叠业务分区，统一折叠标题、边框、白底容器和内容内边距。
+`UspCollapse` 用于表单页和详情页的可折叠业务分区，统一折叠标题、边框、白底容器和内容内边距。
 
 ## 适用场景
 
@@ -20,13 +20,13 @@
 
 ## 不适用场景
 
-- 简单静态分区，优先使用 `DsSection`。
+- 简单静态分区，优先使用 `UspSection`。
 - 手风琴式导航菜单。
 - 表格行展开内容。
 
 ## 交互规范
 
-- 默认使用 `ghost` + 无外层 Ant 边框，由 `DsCollapse` 自身承载容器边框。
+- 默认使用 `ghost` + 无外层 Ant 边框，由 `UspCollapse` 自身承载容器边框。
 - 标题使用 14px、600 字重。
 - 内容区使用 12px 内边距。
 - 支持多面板同时展开；如需单面板展开，可设置 `accordion`。
@@ -51,11 +51,11 @@
 
 ```vue
 <template>
-    <DsCollapse v-model:active-key="activeKeys">
+    <UspCollapse v-model:active-key="activeKeys">
         <a-collapse-panel key="basic" header="基本信息">
             <BasicForm />
         </a-collapse-panel>
-    </DsCollapse>
+    </UspCollapse>
 </template>
 ```
 
@@ -69,8 +69,8 @@
 
 从页面自写 `a-collapse` 迁移时：
 
-1. 用 `DsCollapse` 包裹原 `a-collapse-panel`。
+1. 用 `UspCollapse` 包裹原 `a-collapse-panel`。
 2. 保留原 `activeKey` 状态。
 3. 删除页面内 `custom-collapse` 样式。
-4. 如果只是静态分区，改用 `DsSection`。
+4. 如果只是静态分区，改用 `UspSection`。
 

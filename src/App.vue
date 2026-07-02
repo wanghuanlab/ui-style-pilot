@@ -23,7 +23,7 @@ const standards = [
   {
     title: "Component Patterns",
     path: "docs/frontend-standards/components/",
-    text: "Documented Ds-style component patterns for reuse across pages, teams, and agents.",
+    text: "Documented Usp-style component patterns for reuse across pages, teams, and agents.",
   },
   {
     title: "AI Skills",

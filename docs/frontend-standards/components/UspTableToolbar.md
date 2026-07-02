@@ -1,26 +1,26 @@
-# DsTableToolbar
+# UspTableToolbar
 
 ## 基本信息
 
 | 项 | 内容 |
 |---|---|
 | Pattern | Standard Table Toolbar |
-| Implementation | `DsTableToolbar` |
+| Implementation | `UspTableToolbar` |
 | 类型 | `business` |
 | 状态 | `stable` |
-| 当前路径 | `src/components/business/DsTableToolbar.vue` |
+| 当前路径 | `src/components/business/UspTableToolbar.vue` |
 
-`DsTableToolbar` 用于承载标准列表页表格上方的标题、主操作、批量操作和表格工具能力，例如刷新、密度切换和列配置。
+`UspTableToolbar` 用于承载标准列表页表格上方的标题、主操作、批量操作和表格工具能力，例如刷新、密度切换和列配置。
 
 ## 适用场景
 
 - 标准列表页、台账页、报表页的表格工具栏。
 - 需要表格标题、已选数量、行级批量操作、刷新、密度切换、列配置的场景。
-- 与 `DsSearchPanel`、`DsDataTable`、`DsColumnConfigDrawer` 组成标准列表页。
+- 与 `UspSearchPanel`、`UspDataTable`、`UspColumnConfigDrawer` 组成标准列表页。
 
 ## 不适用场景
 
-- 页面级操作区。页面级操作应放入 `DsPageHeader`。
+- 页面级操作区。页面级操作应放入 `UspPageHeader`。
 - 表单底部提交按钮区。
 - 弹窗或抽屉内部操作栏。
 
@@ -66,7 +66,7 @@
 
 ```vue
 <template>
-    <DsTableToolbar
+    <UspTableToolbar
         title="项目列表"
         :selected-count="selectedKeys.length"
         :density="tableSize"
@@ -80,15 +80,15 @@
         <template #tools>
             <a-button size="small">导出</a-button>
         </template>
-    </DsTableToolbar>
+    </UspTableToolbar>
 </template>
 ```
 
 ## 设计与编码约束
 
 - 页面不得重复实现刷新、密度切换、列配置图标按钮组。
-- 表格级操作放在 `DsTableToolbar`，页面级操作放在 `DsPageHeader`。
-- 列配置入口应触发 `DsColumnConfigDrawer`，不要在页面内重复实现列配置抽屉。
+- 表格级操作放在 `UspTableToolbar`，页面级操作放在 `UspPageHeader`。
+- 列配置入口应触发 `UspColumnConfigDrawer`，不要在页面内重复实现列配置抽屉。
 - 工具栏内不得写内联样式修补按钮高度或对齐。
 - 如果某个页面不需要刷新、密度或列配置，应通过 props 关闭，不删除组件结构。
 
@@ -104,4 +104,4 @@
 
 ## AI 使用要求
 
-AI 新增或迁移标准列表页时，必须优先使用 `DsTableToolbar` 承载表格工具栏。不得在页面内重复实现刷新、密度切换、列配置按钮组和工具栏对齐样式。
+AI 新增或迁移标准列表页时，必须优先使用 `UspTableToolbar` 承载表格工具栏。不得在页面内重复实现刷新、密度切换、列配置按钮组和工具栏对齐样式。

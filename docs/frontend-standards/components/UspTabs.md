@@ -1,16 +1,16 @@
-# DsTabs
+# UspTabs
 
 ## 基本信息
 
 | 项 | 内容 |
 |---|---|
 | Pattern | Standard Form Tabs |
-| Implementation | `DsTabs` |
+| Implementation | `UspTabs` |
 | 类型 | `layout` |
 | 状态 | `draft` |
-| 当前路径 | `src/components/layout/DsTabs.vue` |
+| 当前路径 | `src/components/layout/UspTabs.vue` |
 
-`DsTabs` 用于后台表单页、详情页和业务配置页的主内容页签，统一页签字号、选中态、边框和内容区间距。
+`UspTabs` 用于后台表单页、详情页和业务配置页的主内容页签，统一页签字号、选中态、边框和内容区间距。
 
 ## 适用场景
 
@@ -53,10 +53,10 @@
 
 ```vue
 <template>
-    <DsTabs v-model:active-key="activeTab" :items="tabs">
+    <UspTabs v-model:active-key="activeTab" :items="tabs">
         <TabSummary v-if="activeTab === 'summary'" />
         <TabBudget v-else-if="activeTab === 'budget'" />
-    </DsTabs>
+    </UspTabs>
 </template>
 ```
 
