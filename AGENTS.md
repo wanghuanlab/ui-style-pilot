@@ -25,6 +25,7 @@ Before changing the Vite/Vue preview app, also inspect:
 
 - Keep reusable project rules in `docs/frontend-standards/`.
 - Keep AI skill definitions in `docs/ai-skills/`.
+- Keep GitHub Pages site sources in `site/`.
 - Keep product-specific examples clearly marked as examples or templates.
 - Do not bury operational rules inside the preview app.
 - Prefer concise, actionable docs over long conceptual prose.

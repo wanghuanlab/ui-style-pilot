@@ -36,15 +36,15 @@ npm run dev
 
 Then open the local URL printed by Vite.
 
-For product-team adoption, see [ADOPTION_GUIDE.zh-CN.md](ADOPTION_GUIDE.zh-CN.md).
+For product-team adoption, see [site/ADOPTION_GUIDE.zh-CN.md](site/ADOPTION_GUIDE.zh-CN.md).
 
 ## Live Site
 
-The promotional site is deployed to GitHub Pages on every update to `docs/landing.html`:
+The promotional site is deployed to GitHub Pages on every update under `site/`:
 
 https://wanghuanlab.github.io/ui-style-pilot/
 
-Edit the source at [`docs/landing.html`](docs/landing.html). The adoption guide is built from [`ADOPTION_GUIDE.zh-CN.md`](ADOPTION_GUIDE.zh-CN.md) and published at `/adoption-guide.html`. For the local documentation browser, run `npm run dev`.
+Edit sources in [`site/`](site/). The adoption guide is built from [`site/ADOPTION_GUIDE.zh-CN.md`](site/ADOPTION_GUIDE.zh-CN.md) and published at `/adoption-guide.html`. Build locally with `npm run build:site`. For the local documentation browser, run `npm run dev`.
 
 ## Recommended Workflow
 

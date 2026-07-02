@@ -36,15 +36,15 @@ npm run dev
 
 然后在浏览器中打开 Vite 输出的本地地址。
 
-如果要接入到自己的产品项目，请阅读 [ADOPTION_GUIDE.zh-CN.md](ADOPTION_GUIDE.zh-CN.md)。
+如果要接入到自己的产品项目，请阅读 [site/ADOPTION_GUIDE.zh-CN.md](site/ADOPTION_GUIDE.zh-CN.md)。
 
 ## 在线站点
 
-宣传页会在 `docs/landing.html` 更新后自动部署到 GitHub Pages：
+宣传页会在 `site/` 目录更新后自动部署到 GitHub Pages：
 
 https://wanghuanlab.github.io/ui-style-pilot/
 
-编辑源文件 [`docs/landing.html`](docs/landing.html)。接入使用手册由 [`ADOPTION_GUIDE.zh-CN.md`](ADOPTION_GUIDE.zh-CN.md) 构建，发布于 `/adoption-guide.html`。本地文档浏览请运行 `npm run dev`。
+编辑 [`site/`](site/) 下的源文件。接入使用手册由 [`site/ADOPTION_GUIDE.zh-CN.md`](site/ADOPTION_GUIDE.zh-CN.md) 构建，发布于 `/adoption-guide.html`。本地构建请运行 `npm run build:site`。本地文档浏览请运行 `npm run dev`。
 
 ## 推荐使用流程
 

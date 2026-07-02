@@ -5,10 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "docs/landing.html"
-      - "docs/guide-template.html"
-      - "ADOPTION_GUIDE.zh-CN.md"
-      - "scripts/build-site.mjs"
+      - "site/**"
       - "package.json"
       - "package-lock.json"
       - ".github/workflows/pages.yml"
@@ -49,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: site/dist
 
       - name: Deploy to GitHub Pages
         id: deployment

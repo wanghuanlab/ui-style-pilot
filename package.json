@@ -5,9 +5,9 @@
   "type": "module",
   "description": "AI-assisted UI standards and style governance for consistent frontend delivery.",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
+    "dev": "vite --host 127.0.0.1  --open /",
     "build": "vue-tsc --noEmit && vite build",
-    "build:site": "node scripts/build-site.mjs",
+    "build:site": "node site/build.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },
   "keywords": [
