@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vue-tsc --noEmit && vite build",
-    "build:pages": "vue-tsc --noEmit && vite build --mode pages",
     "preview": "vite preview --host 127.0.0.1"
   },
   "keywords": [

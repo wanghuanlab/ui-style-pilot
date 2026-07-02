@@ -24,8 +24,8 @@ UI Style Pilot is a starter kit for teams that use AI to generate or modify fron
 - `templates/vue3/`  
   A small template area for project files that teams commonly copy into Vue projects, such as `src/components/index.ts`.
 
-- Vite + Vue 3 preview app  
-  A lightweight landing page that explains the workflow and points to the docs.
+- Vite + Vue 3 local preview app  
+  A lightweight local page that explains the workflow and points to the docs. Run with `npm run dev`.
 
 ## Quick Start
 
@@ -36,13 +36,13 @@ npm run dev
 
 Then open the local URL printed by Vite.
 
-## Live Preview
+## Live Site
 
-The preview app is deployed to GitHub Pages on every push to `main`:
+The promotional site is deployed to GitHub Pages on every update to `docs/landing.html`:
 
 https://wanghuanlab.github.io/ui-style-pilot/
 
-Open the standalone promo page at [`docs/landing.html`](docs/landing.html) in a browser, or serve it locally.
+Edit the source at [`docs/landing.html`](docs/landing.html). For the local documentation browser, run `npm run dev`.
 
 ## Recommended Workflow
 

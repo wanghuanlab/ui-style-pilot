@@ -60,7 +60,7 @@ const workflow = [
           target="_blank"
           rel="noreferrer"
         >
-          Open live preview
+          Open live site
         </a>
       </div>
     </section>
