@@ -14,9 +14,11 @@ Read these before creating or changing components:
 1. `../../../frontend-standards/README.md`
 2. `../../../frontend-standards/01-design-tokens.md`
 3. `../../../frontend-standards/04-component-rules.md`
-4. `../../../frontend-standards/06-coding-rules.md`
-5. `../../../frontend-standards/components/README.md`
-6. `../../../frontend-standards/09-review-checklist.md`
+4. `../../../frontend-standards/05-form-rules.md`
+5. `../../../frontend-standards/06-coding-rules.md`
+6. `../../../frontend-standards/10-component-inventory.md`
+7. `../../../frontend-standards/components/README.md`
+8. `../../../frontend-standards/09-review-checklist.md`
 
 When changing or using a documented `Usp*` component, also read that component's document under `../../../frontend-standards/components/`.
 
@@ -71,6 +73,11 @@ The first extraction target is the standard backend list-page skeleton:
 | `UspTableToolbar` | `business` | Main actions, batch actions, table tools |
 | `UspDataTable` | `business` | Table, selection, pagination, loading, empty state |
 | `UspColumnConfigDrawer` | `business` | Column visibility and order configuration |
+| `UspFormSection` | `business` | Form or property group section |
+| `UspFormGrid` | `business` | Multi-column form field layout |
+| `UspFormItem` | `business` | Editable label/value field with required, help, and error states |
+| `UspReadonlyField` | `business` | Readonly label/value display |
+| `UspFormActions` | `business` | Standard form footer action area |
 | `UspFormDrawer` | `business` | Create, edit, and view form drawer |
 | `UspButton` | `base` | Button wrapper only when project-level behavior needs it |
 | `UspCompactInput` | `base` | 28px compact input for search and table-tool areas |
@@ -96,6 +103,8 @@ For standard data tables, use `UspDataTable` first and read `../../../frontend-s
 For semantic status display, use `UspStatusTag` first and read `../../../frontend-standards/components/UspStatusTag.md`. Do not hardcode status tag colors inside a page.
 
 For table column visibility, ordering, or column-setting drawers, use `UspColumnConfigDrawer` first and read `../../../frontend-standards/components/UspColumnConfigDrawer.md`. Do not recreate column-transfer or column-sort drawer logic inside a page.
+
+For form and readonly property layouts, use `UspFormSection`, `UspFormGrid`, `UspFormItem`, `UspReadonlyField`, and `UspFormActions` first and read `../../../frontend-standards/components/UspFormLayout.md`. Do not recreate form label widths, colons, or field spacing inside a page.
 
 ## Public Component Standards
 

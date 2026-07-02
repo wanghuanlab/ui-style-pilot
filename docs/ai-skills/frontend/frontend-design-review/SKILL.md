@@ -17,9 +17,12 @@ Read these before reviewing:
 4. `../../../frontend-standards/02-layout-rules.md`
 5. `../../../frontend-standards/03-navigation-rules.md`
 6. `../../../frontend-standards/04-component-rules.md`
-7. `../../../frontend-standards/05-interaction-rules.md`
-8. `../../../frontend-standards/06-coding-rules.md`
-9. `../../../frontend-standards/09-review-checklist.md`
+7. `../../../frontend-standards/05-form-rules.md`
+8. `../../../frontend-standards/05-interaction-rules.md`
+9. `../../../frontend-standards/06-coding-rules.md`
+10. `../../../frontend-standards/09-review-checklist.md`
+11. `../../../frontend-standards/10-component-inventory.md`
+12. `../../../frontend-standards/components/README.md`
 
 ## Review Inputs
 
@@ -40,6 +43,7 @@ Use the strongest available evidence:
    - Layout and responsive behavior.
    - Navigation and breadcrumb hierarchy.
    - Public component reuse.
+   - Form and readonly property field consistency.
    - Interaction states.
    - Coding-rule compliance.
    - Accessibility risks visible from the evidence.
@@ -62,6 +66,7 @@ Check whether the page duplicates:
 - Status tags.
 - Column configuration.
 - Drawer or modal form layout.
+- Form label/value rows, hand-written colons, and page-local label widths.
 
 ## Output Format
 
