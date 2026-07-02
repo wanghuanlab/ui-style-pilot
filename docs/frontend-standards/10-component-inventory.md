@@ -5,10 +5,74 @@
 新页面建议从统一入口导入：
 
 ```ts
-import { PageScaffold, ColumnConfigDrawer, DictTag } from "@/components";
+import { DsPage, DsDataTable, DsColumnConfigDrawer, DsStatusTag } from "@/components";
 ```
 
 旧页面已有的相对路径引用可以逐步迁移，不需要一次性替换。
+
+已形成稳定规范的 `Ds*` 组件，应同时查看 `docs/frontend-standards/components/` 中的组件文档。
+
+## 新范式组件规划
+
+新抽象的规范组件统一使用 `Ds*` 命名。当前阶段目标是先形成新页面可复用的标准组件层，不移动历史组件，不要求老页面一次性迁移。
+
+| 规划组件 | 推荐路径 | 类型 | 状态 | 目标用途 | 对应历史能力 |
+|---|---|---|---|---|---|
+| `DsActionButton` | `src/components/base/DsActionButton.vue` | base | draft | 标准动作按钮、图标、类型、危险态统一 | 页面自写 `a-button` 标准动作 |
+| `DsPage` | `src/components/layout/DsPage.vue` | layout | stable | 标准页面外壳、内容宽度、页面背景、纵向节奏 | `PageScaffold` |
+| `DsPageHeader` | `src/components/layout/DsPageHeader.vue` | layout | stable | 页面标题、面包屑、主操作区 | `PageScaffold` 标题区域 |
+| `DsCollapse` | `src/components/layout/DsCollapse.vue` | layout | draft | 表单页、详情页的可折叠业务分区 | 页面自写 `a-collapse` |
+| `DsTabs` | `src/components/layout/DsTabs.vue` | layout | draft | 表单页、详情页的主内容页签 | 页面自写 `a-tabs` |
+| `DsTabContent` | `src/components/layout/DsTabContent.vue` | layout | draft | Tab 内部内容区、工具栏、表格承载 | 页面自写 `tab-content` / `tab-toolbar` |
+| `DsSection` | `src/components/layout/DsSection.vue` | layout | draft | 页面分区容器、区块标题、右侧操作 | 页面内自写 section |
+| `DsSearchPanel` | `src/components/business/DsSearchPanel.vue` | business | stable | 列表页标准搜索区、常用字段、更多字段、查询重置 | `AdvancedFilter`、页面自写搜索区 |
+| `DsTableToolbar` | `src/components/business/DsTableToolbar.vue` | business | stable | 表格主操作、批量操作、刷新、列设置、密度 | `RightToolbar`、页面自写 toolbar |
+| `DsTableSurface` | `src/components/business/DsTableSurface.vue` | business | draft | 历史 `a-table` 视觉迁移承载层 | 页面自写 `a-table` 表头、hover、分页样式 |
+| `DsDataTable` | `src/components/business/DsDataTable.vue` | business | stable | 标准数据表格、分页、选择、空状态、loading | 页面自写 `a-table` / `el-table` |
+| `DsColumnConfigDrawer` | `src/components/business/DsColumnConfigDrawer.vue` | business | stable | 统一列配置抽屉 | `ColumnConfigDrawer`、`ColumnConfigTransfer` |
+| `DsFormSection` | `src/components/business/DsFormSection.vue` | business | draft | 表单分组标题、说明、操作区 | 页面自写分组标题 |
+| `DsFormGrid` | `src/components/business/DsFormGrid.vue` | business | draft | 表单字段多列布局、label 宽度控制 | 页面自写 `a-row/a-col` |
+| `DsFormItem` | `src/components/business/DsFormItem.vue` | business | draft | 编辑态字段 label、冒号、必填、提示统一 | 页面自写 `a-form-item` 或 `div + span` |
+| `DsReadonlyField` | `src/components/business/DsReadonlyField.vue` | business | draft | 只读属性名和值展示 | 页面手写属性展示 |
+| `DsFormActions` | `src/components/business/DsFormActions.vue` | business | draft | 表单底部按钮区 | 页面自写 footer 操作区 |
+| `DsFormDrawer` | `src/components/business/DsFormDrawer.vue` | business | draft | 新增、编辑、查看类表单抽屉 | 页面自写 Drawer |
+| `DsButton` | `src/components/base/DsButton.vue` | base | draft | 当按钮规则需要统一增强时承载按钮规范 | Ant Design Vue Button |
+| `DsCompactInput` | `src/components/base/DsCompactInput.vue` | base | draft | 28px 紧凑文本输入 | Ant Design Vue Input |
+| `DsCompactSelect` | `src/components/base/DsCompactSelect.vue` | base | draft | 28px 紧凑下拉选择 | Ant Design Vue Select |
+| `DsCompactDatePicker` | `src/components/base/DsCompactDatePicker.vue` | base | draft | 28px 紧凑日期选择 | Ant Design Vue DatePicker |
+| `DsCompactRangePicker` | `src/components/base/DsCompactRangePicker.vue` | base | draft | 28px 紧凑日期范围选择 | Ant Design Vue RangePicker |
+| `DsIconButton` | `src/components/base/DsIconButton.vue` | base | draft | 表格工具、列设置、刷新等图标按钮 | 页面自写图标按钮 |
+| `DsStatusTag` | `src/components/base/DsStatusTag.vue` | base | stable | 统一状态标签和状态色语义 | `DictTag` |
+| `DsEmptyState` | `src/components/base/DsEmptyState.vue` | base | draft | 统一空状态 | 页面自写空状态 |
+| `DsLoadingState` | `src/components/feedback/DsLoadingState.vue` | feedback | draft | 页面级或区块级加载态 | 页面自写 loading |
+| `DsResultState` | `src/components/feedback/DsResultState.vue` | feedback | draft | 成功、失败、无权限、异常等结果态 | 页面自写结果状态 |
+
+已沉淀组件规范：
+
+| 组件 | 规范文档 | Pattern | 状态 |
+|---|---|---|---|
+| `DsActionButton` | `docs/frontend-standards/components/DsActionButton.md` | Semantic Action Button | draft |
+| `DsCompactInput` / `DsCompactSelect` / `DsCompactDatePicker` / `DsCompactRangePicker` | `docs/frontend-standards/components/DsCompactFieldControls.md` | Compact Field Controls | draft |
+| `DsPage` | `docs/frontend-standards/components/DsPage.md` | Standard Page Shell | stable |
+| `DsPageHeader` | `docs/frontend-standards/components/DsPageHeader.md` | Standard Page Header | stable |
+| `DsCollapse` | `docs/frontend-standards/components/DsCollapse.md` | Standard Form Collapse | draft |
+| `DsTabs` | `docs/frontend-standards/components/DsTabs.md` | Standard Form Tabs | draft |
+| `DsTabContent` | `docs/frontend-standards/components/DsTabContent.md` | Standard Tab Content | draft |
+| `DsSearchPanel` | `docs/frontend-standards/components/DsSearchPanel.md` | Compact Search Panel | stable |
+| `DsTableToolbar` | `docs/frontend-standards/components/DsTableToolbar.md` | Standard Table Toolbar | stable |
+| `DsTableSurface` | `docs/frontend-standards/components/DsTableSurface.md` | Standard Table Surface | draft |
+| `DsDataTable` | `docs/frontend-standards/components/DsDataTable.md` | Standard Data Table | stable |
+| `DsStatusTag` | `docs/frontend-standards/components/DsStatusTag.md` | Semantic Status Tag | stable |
+| `DsColumnConfigDrawer` | `docs/frontend-standards/components/DsColumnConfigDrawer.md` | Table Column Configuration Drawer | stable |
+| `DsFormSection` / `DsFormGrid` / `DsFormItem` / `DsReadonlyField` / `DsFormActions` | `docs/frontend-standards/components/DsFormLayout.md` | Standard Form Field Layout | draft |
+
+建设顺序建议：
+
+1. 先建设列表页骨架：`DsPage`、`DsPageHeader`、`DsSearchPanel`、`DsTableToolbar`、`DsDataTable`。
+2. 再补齐列表页常见能力：`DsStatusTag`、`DsColumnConfigDrawer`、`DsEmptyState`、`DsLoadingState`。
+3. 最后按表单迁移需要建设：`DsFormSection`、`DsFormGrid`、`DsFormItem`、`DsReadonlyField`、`DsFormActions`、`DsFormDrawer`、`DsSection`、`DsResultState`。
+
+暂不优先建设泛用 `DsInput`、`DsSelect`、`DsDatePicker` 等基础表单控件。Ant Design Vue 已提供稳定基础控件，过早二次封装会增加维护成本。当前只沉淀列表筛选、表格工具区需要的 `DsCompact*` 紧凑控件。只有当多个页面出现稳定、重复、非页面特定的输入控件差异时，再进入更泛用的 `base/` 抽象。
 
 ## 统一导出入口
 
@@ -19,107 +83,3 @@ src/components/index.ts
 ```
 
 该入口只做命名导出，不改变组件注册方式，不影响 `src/index.ts` 中已有的全局组件注册。
-
-## 优先复用组件
-
-这些组件可作为新页面的第一优先级。
-
-| 组件 | 当前路径 | 建议归类 | 适用场景 | 复用建议 |
-|---|---|---|---|---|
-| `PageScaffold` | `src/components/PageScaffold.vue` | `layout` | 页面骨架、面包屑、标题、页面操作区 | 新增业务页优先使用；后续需按规范把页面标题收敛到 18px |
-| `SystemPageLayout` | `src/components/SystemPageLayout.vue` | `layout` | 系统管理类页面，含筛选、工具栏、内容区插槽 | 系统管理页面可继续复用；后续应减少 Element Plus 依赖扩散 |
-| `ColumnConfigDrawer` | `src/components/ColumnConfigDrawer.vue` | `business` | 表格列配置抽屉 | 表格列配置优先使用；不要在页面内重复实现列选择 |
-| `ColumnConfigTransfer` | `src/components/ColumnConfigTransfer.vue` | `business` | 更复杂的列配置穿梭框 | 字段较多、需要左右选择时复用 |
-| `AdvancedFilter` | `src/components/AdvancedFilter.vue` | `business` | 高级筛选条件组合 | 可用于复杂筛选；后续需清理内部内联宽度样式 |
-| `Pagination` | `src/components/Pagination/index.vue` | `business` | 分页 | 历史后台页面可复用；新页面可按统一分页策略封装 |
-| `DictTag` | `src/components/DictTag/index.vue` | `business` | 字典标签、状态标签 | 状态展示优先复用或作为统一状态标签基础 |
-| `RightToolbar` | `src/components/RightToolbar/index.vue` | `business` | 表格右侧工具栏 | 列显隐、刷新、密度等工具能力优先复用 |
-| `TreePanel` | `src/components/TreePanel/index.vue` | `business` | 左树右表布局中的树面板 | 组织、部门、分类、菜单类页面优先复用 |
-| `PermissionMenuTree` | `src/components/PermissionMenuTree.vue` | `business` | 权限菜单树 | 角色、菜单、权限配置复用 |
-
-## 可复用但需注意组件
-
-这些组件可以复用，但应注意历史依赖、样式一致性或业务边界。
-
-| 组件 | 当前路径 | 建议归类 | 适用场景 | 注意事项 |
-|---|---|---|---|---|
-| `Breadcrumb` | `src/components/Breadcrumb/index.vue` | `layout` | 历史页面面包屑 | 新页面优先用 `PageScaffold` 内置面包屑，避免重复 |
-| `SvgIcon` | `src/components/SvgIcon/index.vue` | `base` | SVG 图标 | 历史图标体系继续复用；新 Ant Design Vue 页面可优先用 `@ant-design/icons-vue` |
-| `Hamburger` | `src/components/Hamburger/index.vue` | `layout` | 侧边栏展开收起 | 布局组件内部使用，不建议业务页直接使用 |
-| `HeaderSearch` | `src/components/HeaderSearch/index.vue` | `layout` | 顶部全局搜索 | 只用于全局 Header，不用于业务筛选区 |
-| `Screenfull` | `src/components/Screenfull/index.vue` | `layout` | 全屏切换 | 放在全局工具区或表格工具栏时复用 |
-| `SizeSelect` | `src/components/SizeSelect/index.vue` | `layout` | 全局尺寸切换 | Element Plus 历史能力，新页面谨慎扩散 |
-| `ParentView` | `src/components/ParentView/index.vue` | `layout` | 路由父视图 | 路由配置使用，不作为业务 UI 组件 |
-| `InnerLink` | `src/components/InnerLink/index.vue` | `layout` | 内链/iframe 跳转 | 路由或外链承载场景使用 |
-| `iFrame` | `src/components/iFrame/index.vue` | `layout` | iframe 页面 | 只在 Swagger、Druid 等嵌入场景使用 |
-
-## 表单、上传与富文本组件
-
-| 组件 | 当前路径 | 建议归类 | 适用场景 | 注意事项 |
-|---|---|---|---|---|
-| `Editor` | `src/components/Editor/index.vue` | `business` | 富文本编辑 | 依赖编辑器能力，适合备注、公告、说明类内容 |
-| `FileUpload` | `src/components/FileUpload/index.vue` | `business` | 文件上传 | 上传入口优先复用，避免页面自行拼上传逻辑 |
-| `ImageUpload` | `src/components/ImageUpload/index.vue` | `business` | 图片上传 | 图片字段优先复用 |
-| `ImagePreview` | `src/components/ImagePreview/index.vue` | `business` | 图片预览 | 列表、详情中的图片预览复用 |
-| `ExcelImportDialog` | `src/components/ExcelImportDialog/index.vue` | `business` | Excel 导入弹窗 | 批量导入场景优先复用，导入结果反馈需按规范补齐 |
-| `IconSelect` | `src/components/IconSelect/index.vue` | `business` | 图标选择 | 菜单、配置类页面复用 |
-
-## 定时任务组件
-
-| 组件 | 当前路径 | 建议归类 | 适用场景 | 注意事项 |
-|---|---|---|---|---|
-| `Crontab` | `src/components/Crontab/index.vue` | `business` | Cron 表达式编辑 | 系统任务、调度配置复用 |
-| `Crontab/day` 等子组件 | `src/components/Crontab/*.vue` | `business` | `Crontab` 内部子组件 | 不建议业务页直接引用 |
-
-## 文档与历史组件
-
-| 组件 | 当前路径 | 建议归类 | 适用场景 | 注意事项 |
-|---|---|---|---|---|
-| `LegacyDoc` | `src/components/legacy/Doc/index.vue` | `legacy` | 历史文档入口 | 历史功能，非新业务组件 |
-| `LegacyGit` | `src/components/legacy/Git/index.vue` | `legacy` | 历史 Git 入口 | 历史功能，非新业务组件 |
-
-## 后续推荐目录归档
-
-后续在不影响业务的前提下，可逐步整理为：
-
-```text
-src/components/
-  base/
-    SvgIcon/
-  business/
-    AdvancedFilter/
-    ColumnConfigDrawer/
-    ColumnConfigTransfer/
-    DictTag/
-    Pagination/
-    RightToolbar/
-    TreePanel/
-    Upload/
-  layout/
-    PageScaffold/
-    SystemPageLayout/
-    Breadcrumb/
-    HeaderSearch/
-  feedback/
-    EmptyState/
-    LoadingState/
-  legacy/
-    legacy/
-```
-
-当前不建议立即移动文件，因为大量历史页面使用相对路径引用。优先通过 `src/components/index.ts` 建立新页面导入习惯，待后续迁移时再逐步调整目录。
-
-## AI 使用要求
-
-AI 新增或修改页面时必须先做两步：
-
-1. 搜索公共组件：
-
-```bash
-find src/components -maxdepth 3 -type f \( -name "*.vue" -o -name "*.tsx" -o -name "*.ts" \) | sort
-rg -n "Search|Filter|Toolbar|Table|Drawer|Modal|Pagination|Status|Tag|Scaffold|Layout|Tree|ColumnConfig" src/components
-```
-
-2. 从 `@/components` 导入可复用组件。
-
-只有当现有组件无法满足需求时，才允许提出新增公共组件，并说明为什么不能复用或扩展现有组件。

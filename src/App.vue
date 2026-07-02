@@ -16,6 +16,16 @@ const standards = [
     text: "A reusable-component-first map that prevents one-off UI implementations.",
   },
   {
+    title: "Form Rules",
+    path: "docs/frontend-standards/05-form-rules.md",
+    text: "Rules for consistent labels, colons, spacing, readonly fields, and form actions.",
+  },
+  {
+    title: "Component Patterns",
+    path: "docs/frontend-standards/components/",
+    text: "Documented Ds-style component patterns for reuse across pages, teams, and agents.",
+  },
+  {
     title: "AI Skills",
     path: "docs/ai-skills/frontend/",
     text: "Skill definitions for page building, design review, component reuse, and style migration.",

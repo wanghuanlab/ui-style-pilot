@@ -1,5 +1,7 @@
 # UI Style Pilot
 
+**English** | [简体中文](README.zh-CN.md)
+
 AI-assisted UI standards and style governance for consistent frontend delivery.
 
 UI Style Pilot is a starter kit for teams that use AI to generate or modify frontend code and want the results to stay aligned with shared UI standards, reusable components, interaction rules, and review checklists.
@@ -7,7 +9,10 @@ UI Style Pilot is a starter kit for teams that use AI to generate or modify fron
 ## What It Contains
 
 - `docs/frontend-standards/`  
-  Standards for design tokens, layouts, navigation, components, interactions, coding rules, AI generation, page templates, reviews, component inventory, and chart rules.
+  Standards for design tokens, layouts, navigation, components, form layout, interactions, coding rules, AI generation, page templates, reviews, component inventory, and chart rules.
+
+- `docs/frontend-standards/components/`  
+  Reusable component pattern documents, including action buttons, page shells, search panels, table surfaces, column configuration, tabs, collapse panels, status tags, and form field layouts.
 
 - `docs/ai-skills/frontend/`  
   Project-local skill definitions for:
@@ -41,9 +46,10 @@ https://wanghuanlab.github.io/ui-style-pilot/
 
 1. Read `docs/frontend-standards/USAGE.md`.
 2. Copy or adapt the standards into your product repository.
-3. Add shared component exports like `templates/vue3/src/components/index.ts`.
-4. Ask AI agents to read the relevant standards before generating UI.
-5. Review every generated page with `docs/frontend-standards/09-review-checklist.md`.
+3. Read `docs/frontend-standards/components/README.md` before creating shared UI.
+4. Add shared component exports like `templates/vue3/src/components/index.ts`.
+5. Ask AI agents to read the relevant standards before generating UI.
+6. Review every generated page with `docs/frontend-standards/09-review-checklist.md`.
 
 ## Why This Exists
 

@@ -1,6 +1,6 @@
 ---
 name: frontend-style-migration
-description: Migrate existing frontend pages toward the unified design and component system. Use when cleaning AI-generated style drift, replacing inline styles, removing hardcoded colors or spacing, standardizing component-library overrides, and moving repeated UI into shared components.
+description: Use when migrating an existing frontend page or local URL toward the unified design and component system, especially AI-generated pages with style drift, inline styles, hardcoded visual values, duplicated search/table/toolbars, or inconsistent Ant Design Vue usage.
 ---
 
 # Frontend Style Migration
@@ -16,9 +16,84 @@ Read these before migration:
 3. `../../../frontend-standards/01-design-tokens.md`
 4. `../../../frontend-standards/02-layout-rules.md`
 5. `../../../frontend-standards/04-component-rules.md`
-6. `../../../frontend-standards/05-interaction-rules.md`
-7. `../../../frontend-standards/06-coding-rules.md`
-8. `../../../frontend-standards/09-review-checklist.md`
+6. `../../../frontend-standards/05-form-rules.md`
+7. `../../../frontend-standards/05-interaction-rules.md`
+8. `../../../frontend-standards/06-coding-rules.md`
+9. `../../../frontend-standards/09-review-checklist.md`
+10. `../../../frontend-standards/10-component-inventory.md`
+11. `../../../frontend-standards/components/README.md`
+
+When the migration touches a documented `Ds*` component pattern, also read the specific component document under `../../../frontend-standards/components/`.
+
+Also read `../../../../AGENTS.md` before editing, because it is the project-wide AI collaboration baseline.
+
+## URL-First Workflow
+
+When the user provides a local URL such as `http://127.0.0.1:2149/project/overview`, treat the URL as the migration target.
+
+1. Locate the route and source page before editing:
+
+```bash
+rg -n "project/overview|/project/overview|name:.*project|path:.*overview" src/router src/views src/store
+```
+
+If the exact URL cannot be mapped from route config, search likely page names and menu metadata before asking the user.
+
+2. Open the page in a browser when available and capture the current visual state at:
+   - `1920x1080`
+   - `1280x720`
+
+3. Inventory only the target page and directly related local components:
+
+```bash
+rg -n "style=|:style=|#[0-9a-fA-F]{3,8}|rgb\\(|rgba\\(|font-size:|padding:|margin:|border-radius:|:deep\\(\\.ant-|:deep\\(\\.el-" <target-page-file>
+```
+
+4. Produce a migration plan before editing unless the user explicitly says to implement directly. The plan must identify:
+   - Source page file.
+   - Current style and component reuse issues.
+   - Which `Ds*` components will replace local structures.
+   - Which business logic, API calls, and route behavior must remain unchanged.
+   - Verification commands and browser checks.
+
+5. If implementation is approved, migrate in small slices and verify after each meaningful slice.
+
+## Ds Component Migration Map
+
+Prefer the new standards-aligned components exported from `@/components`:
+
+| Existing page structure | Preferred component |
+|---|---|
+| Standard action buttons such as add/edit/delete/import/export/search/reset/save/cancel | `DsActionButton` |
+| Page shell, background, content scroll | `DsPage` |
+| Breadcrumb, title, page-level actions | `DsPageHeader` |
+| Repeated section box | `DsSection` |
+| Search form, query/reset/more fields | `DsSearchPanel` |
+| Table actions, refresh, density, column config | `DsTableToolbar` |
+| Table, empty state, loading, pagination | `DsDataTable` |
+| Status or approval labels | `DsStatusTag` |
+| Column configuration drawer | `DsColumnConfigDrawer` |
+| Form section, form grid, label/value field, readonly property, form actions | `DsFormSection`, `DsFormGrid`, `DsFormItem`, `DsReadonlyField`, `DsFormActions` |
+| Create/edit/view drawer | `DsFormDrawer` |
+| Empty, loading, result states | `DsEmptyState`, `DsLoadingState`, `DsResultState` |
+
+Do not create `DsInput`, `DsSelect`, or other basic field wrappers during a page migration unless the same repeated need already exists across multiple pages. Use Ant Design Vue controls inside page-specific slots when needed.
+
+For list search fields inside `DsSearchPanel`, use the existing `DsCompact*` controls rather than page-local `:deep(.ant-*)` height overrides. For documented 28px compact form and property areas, use `DsFormItem` with `DsCompactInput`, `DsCompactSelect`, `DsCompactDatePicker`, or Ant Design Vue controls wrapped by `DsFormItem`.
+
+For page shells and page headers, migrate to `DsPage` and `DsPageHeader` and follow `../../../frontend-standards/components/DsPage.md` and `../../../frontend-standards/components/DsPageHeader.md`. Do not preserve duplicated page background, breadcrumb, title, or header-action styles.
+
+For table toolbars, migrate to `DsTableToolbar` and follow `../../../frontend-standards/components/DsTableToolbar.md`. Do not preserve page-local refresh, density, column-config button groups, or toolbar alignment overrides.
+
+For standard action buttons, migrate to `DsActionButton` and follow `../../../frontend-standards/components/DsActionButton.md`. Do not preserve page-local icon choices, button type choices, or inconsistent text/icon combinations for standard actions such as add, edit, delete, import, export, column config, search, reset, save, and cancel.
+
+For standard data tables, migrate table visuals, loading, empty state, and pagination footer to `DsDataTable` and follow `../../../frontend-standards/components/DsDataTable.md`.
+
+For status labels, migrate to `DsStatusTag` and follow `../../../frontend-standards/components/DsStatusTag.md`. Do not preserve page-local status color maps unless a documented business exception exists.
+
+For table column visibility, hiding, ordering, or column-setting interactions, migrate to `DsColumnConfigDrawer` and follow `../../../frontend-standards/components/DsColumnConfigDrawer.md`. Do not preserve or recreate page-local column configuration drawers unless there is a documented business exception.
+
+For form and property areas, migrate to `DsFormSection`, `DsFormGrid`, `DsFormItem`, `DsReadonlyField`, and `DsFormActions`, and follow `../../../frontend-standards/components/DsFormLayout.md`. Do not preserve hand-written `字段名：`, `div + span` property rows, page-local label widths, or `a-row/a-col + a-form-item` form layouts when the standard form components cover the case.
 
 ## Migration Strategy
 
@@ -27,13 +102,18 @@ Migrate in small, reviewable slices. Do not rewrite an entire business page unle
 Recommended order:
 
 1. Inventory current issues.
-2. Replace inline styles and hardcoded tokens.
-3. Standardize search panel.
-4. Standardize toolbar and actions.
-5. Standardize table, status tags, and pagination.
-6. Standardize drawers, modals, and feedback states.
-7. Remove duplicated local styles that are now covered by public components.
-8. Verify at `1920x1080` and `1280x720` when a browser is available.
+2. Preserve data loading, route params, emitted events, selection behavior, and API contracts.
+3. Replace page shell and header with `DsPage` and `DsPageHeader` when suitable.
+4. Standardize search panel with `DsSearchPanel`.
+5. Standardize toolbar and actions with `DsTableToolbar`.
+6. Standardize standard operation buttons with `DsActionButton`.
+7. Standardize table, status tags, pagination, and empty/loading states with `DsDataTable` and `DsStatusTag`.
+8. Standardize form and property areas with `DsFormSection`, `DsFormGrid`, `DsFormItem`, `DsReadonlyField`, and `DsFormActions`.
+9. Standardize drawers, modals, and feedback states.
+10. For documented `Ds*` components, check whether the migration requires updating the component standard document.
+11. Replace inline styles and hardcoded tokens left in the migrated area.
+12. Remove duplicated local styles that are now covered by public components.
+13. Verify at `1920x1080` and `1280x720` when a browser is available.
 
 ## Inventory Commands
 
@@ -48,6 +128,26 @@ rg -n ":deep\\(\\.ant-|:deep\\(\\.el-" src/views src/components src/layouts
 
 Narrow the scan to the target page before editing.
 
+## Standard User Prompt
+
+When a teammate wants to migrate a page by URL, they can use:
+
+```text
+请使用 docs/ai-skills/frontend/frontend-style-migration/SKILL.md，
+把 <URL> 对应页面按前端规范做渐进式迁移。
+
+要求：
+1. 先阅读 AGENTS.md 和 docs/frontend-standards 相关规范。
+2. 先通过路由定位 URL 对应页面文件。
+3. 先审查页面现状并给迁移方案，不要直接大范围重写。
+4. 优先使用 src/components/index.ts 导出的 Ds* 新组件。
+5. 如涉及已文档化组件，先阅读 docs/frontend-standards/components/ 下的对应组件规范。
+6. 本轮只迁移页面骨架、搜索区、工具栏、表格、状态标签、抽屉、反馈状态等视觉结构。
+7. 不改变接口、不改变路由、不改变业务字段含义。
+8. 不写内联 style，不硬编码颜色、字号、间距、圆角。
+9. 改完后运行构建，并用浏览器打开页面检查 1920x1080 和 1280x720。
+```
+
 ## Guardrails
 
 - Preserve business behavior and API contracts.
@@ -55,6 +155,11 @@ Narrow the scan to the target page before editing.
 - Do not mix unrelated refactors into style migration.
 - Do not remove user changes in a dirty worktree.
 - Do not create a new component until checking existing components.
+- Do not hand-code standard action buttons when `DsActionButton` already covers the action.
+- Do not hand-code label/value form rows when `DsFormItem` or `DsReadonlyField` covers the field.
+- Do not hand-write colons after form labels; the standard form components generate them.
+- Do not move or rename historical shared components while migrating one page.
+- Do not replace a working business flow just to match a component API. Adapt through slots or keep the local structure for a later pass.
 - Keep each migration pass small enough to review.
 
 ## Completion Criteria
@@ -62,6 +167,8 @@ Narrow the scan to the target page before editing.
 A migrated page should:
 
 - Use public components where appropriate.
+- Use `DsActionButton` for standard actions such as add, edit, delete, import, export, column config, search, reset, save, and cancel.
+- Use `DsFormItem` or `DsReadonlyField` for label/value fields, with no page-local hand-written colons.
 - Avoid inline styles in templates.
 - Avoid hardcoded visual values in page styles.
 - Match `frontend-standards`.

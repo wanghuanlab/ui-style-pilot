@@ -1,11 +1,11 @@
 ---
 name: frontend-page-builder
-description: Build or modify frontend pages under project UI standards. Use when creating Vue pages, changing page structure, adding business list/detail/form screens, or generating UI from product requirements while preserving shared components, tokens, layout rules, and AI generation constraints.
+description: Build or modify frontend pages under the project UI standards. Use when creating Vue pages, changing page structure, adding business list/detail/form screens, or generating UI from product requirements while preserving shared components, tokens, layout rules, and AI generation constraints.
 ---
 
 # Frontend Page Builder
 
-Use this skill for creating or modifying business pages in the current project.
+Use this skill for creating or modifying business pages in your target project.
 
 ## Required Context
 
