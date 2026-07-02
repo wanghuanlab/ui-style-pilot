@@ -42,6 +42,8 @@ The preview app is deployed to GitHub Pages on every push to `main`:
 
 https://wanghuanlab.github.io/ui-style-pilot/
 
+Open the standalone promo page at [`docs/landing.html`](docs/landing.html) in a browser, or serve it locally.
+
 ## Recommended Workflow
 
 1. Read `docs/frontend-standards/USAGE.md`.

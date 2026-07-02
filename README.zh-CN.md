@@ -42,6 +42,8 @@ npm run dev
 
 https://wanghuanlab.github.io/ui-style-pilot/
 
+可在浏览器中直接打开 [`docs/landing.html`](docs/landing.html) 查看独立宣传页。
+
 ## 推荐使用流程
 
 1. 阅读 `docs/frontend-standards/USAGE.md`。
