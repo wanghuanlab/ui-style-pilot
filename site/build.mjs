@@ -11,6 +11,7 @@ marked.setOptions({ gfm: true });
 fs.mkdirSync(distDir, { recursive: true });
 
 fs.copyFileSync(path.join(siteRoot, "landing.html"), path.join(distDir, "index.html"));
+fs.copyFileSync(path.join(siteRoot, "styles.css"), path.join(distDir, "styles.css"));
 
 const guideMarkdown = fs.readFileSync(path.join(siteRoot, "ADOPTION_GUIDE.zh-CN.md"), "utf8");
 const guideBody = marked.parse(guideMarkdown);

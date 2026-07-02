@@ -8,583 +8,30 @@
       content="UI Style Pilot — AI 时代的前端 UI 规范治理工具包，让人类与 AI 按同一套标准交付后台页面。"
     />
     <title>UI Style Pilot — AI 辅助前端 UI 规范治理</title>
-    <style>
-      :root {
-        --brand: #005bac;
-        --brand-light: #55c4f1;
-        --brand-dark: #002f61;
-        --bg-0: #070b12;
-        --bg-1: #0d1420;
-        --bg-2: #121c2b;
-        --text: #e8eef7;
-        --text-muted: #8fa3bf;
-        --border: rgba(85, 196, 241, 0.14);
-        --glass: rgba(13, 20, 32, 0.72);
-        --glow: rgba(0, 91, 172, 0.45);
-        --radius: 16px;
-        --font:
-          "Source Han Sans SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Segoe UI",
-          system-ui, sans-serif;
-        --mono: "SF Mono", "Fira Code", "JetBrains Mono", Consolas, monospace;
-      }
-
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        font-family: var(--font);
-        color: var(--text);
-        background: var(--bg-0);
-        line-height: 1.6;
-        overflow-x: hidden;
-      }
-
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background:
-          radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0, 91, 172, 0.35), transparent),
-          radial-gradient(ellipse 60% 40% at 100% 50%, rgba(85, 196, 241, 0.12), transparent),
-          radial-gradient(ellipse 50% 30% at 0% 80%, rgba(0, 91, 172, 0.15), transparent);
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      .grid-bg {
-        position: fixed;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(85, 196, 241, 0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(85, 196, 241, 0.04) 1px, transparent 1px);
-        background-size: 48px 48px;
-        mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent);
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .wrap {
-        position: relative;
-        z-index: 1;
-        width: min(1120px, calc(100% - 40px));
-        margin: 0 auto;
-      }
-
-      /* Nav */
-      nav {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        backdrop-filter: blur(16px);
-        background: rgba(7, 11, 18, 0.75);
-        border-bottom: 1px solid var(--border);
-      }
-
-      .nav-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 14px 0;
-        gap: 16px;
-      }
-
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 700;
-        font-size: 1.05rem;
-        letter-spacing: 0.02em;
-      }
-
-      .logo svg {
-        width: 28px;
-        height: 28px;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 24px;
-        font-size: 0.9rem;
-        color: var(--text-muted);
-      }
-
-      .nav-links a:hover {
-        color: var(--brand-light);
-      }
-
-      /* Buttons */
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 22px;
-        border-radius: 10px;
-        font-weight: 600;
-        font-size: 0.95rem;
-        transition:
-          transform 0.2s,
-          box-shadow 0.2s,
-          background 0.2s;
-        border: 1px solid transparent;
-        cursor: pointer;
-      }
-
-      .btn-primary {
-        background: linear-gradient(135deg, var(--brand), #0078d4);
-        color: #fff;
-        box-shadow: 0 4px 24px var(--glow);
-      }
-
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 32px var(--glow);
-      }
-
-      .btn-ghost {
-        background: rgba(255, 255, 255, 0.04);
-        border-color: var(--border);
-        color: var(--text);
-      }
-
-      .btn-ghost:hover {
-        background: rgba(85, 196, 241, 0.08);
-        border-color: rgba(85, 196, 241, 0.3);
-        transform: translateY(-2px);
-      }
-
-      /* Hero */
-      .hero {
-        padding: 80px 0 100px;
-        text-align: center;
-      }
-
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 14px;
-        border-radius: 999px;
-        background: rgba(0, 91, 172, 0.2);
-        border: 1px solid rgba(85, 196, 241, 0.25);
-        color: var(--brand-light);
-        font-size: 0.82rem;
-        font-weight: 500;
-        margin-bottom: 24px;
-        animation: fadeUp 0.7s ease both;
-      }
-
-      .badge::before {
-        content: "";
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--brand-light);
-        box-shadow: 0 0 8px var(--brand-light);
-        animation: pulse 2s infinite;
-      }
-
-      h1 {
-        margin: 0 0 20px;
-        font-size: clamp(2.4rem, 6vw, 3.6rem);
-        font-weight: 800;
-        line-height: 1.15;
-        letter-spacing: -0.03em;
-        background: linear-gradient(135deg, #fff 30%, var(--brand-light) 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        animation: fadeUp 0.7s 0.1s ease both;
-      }
-
-      .hero-sub {
-        max-width: 640px;
-        margin: 0 auto 36px;
-        font-size: clamp(1rem, 2.5vw, 1.15rem);
-        color: var(--text-muted);
-        animation: fadeUp 0.7s 0.2s ease both;
-      }
-
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        justify-content: center;
-        animation: fadeUp 0.7s 0.3s ease both;
-      }
-
-      .hero-stats {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 32px;
-        margin-top: 64px;
-        padding-top: 40px;
-        border-top: 1px solid var(--border);
-        animation: fadeUp 0.7s 0.45s ease both;
-      }
-
-      .stat strong {
-        display: block;
-        font-size: 1.5rem;
-        color: var(--brand-light);
-      }
-
-      .stat span {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-      }
-
-      /* Sections */
-      section {
-        padding: 72px 0;
-      }
-
-      .section-label {
-        display: inline-block;
-        font-size: 0.78rem;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--brand-light);
-        margin-bottom: 10px;
-      }
-
-      h2 {
-        margin: 0 0 12px;
-        font-size: clamp(1.6rem, 4vw, 2.2rem);
-        font-weight: 700;
-        letter-spacing: -0.02em;
-      }
-
-      .section-desc {
-        color: var(--text-muted);
-        max-width: 560px;
-        margin-bottom: 40px;
-      }
-
-      /* Cards */
-      .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
-      }
-
-      .card {
-        padding: 28px;
-        border-radius: var(--radius);
-        background: var(--glass);
-        border: 1px solid var(--border);
-        backdrop-filter: blur(12px);
-        transition:
-          transform 0.25s,
-          border-color 0.25s,
-          box-shadow 0.25s;
-      }
-
-      .card:hover {
-        transform: translateY(-4px);
-        border-color: rgba(85, 196, 241, 0.35);
-        box-shadow: 0 12px 40px rgba(0, 91, 172, 0.15);
-      }
-
-      .card-icon {
-        width: 44px;
-        height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        background: rgba(0, 91, 172, 0.25);
-        font-size: 1.4rem;
-        margin-bottom: 16px;
-      }
-
-      .card h3 {
-        margin: 0 0 8px;
-        font-size: 1.05rem;
-      }
-
-      .card p {
-        margin: 0;
-        font-size: 0.92rem;
-        color: var(--text-muted);
-      }
-
-      /* Tech timeline */
-      .timeline {
-        display: grid;
-        gap: 16px;
-      }
-
-      .timeline-item {
-        display: grid;
-        grid-template-columns: 48px 1fr;
-        gap: 20px;
-        padding: 24px;
-        border-radius: var(--radius);
-        background: var(--glass);
-        border: 1px solid var(--border);
-        backdrop-filter: blur(10px);
-        transition: border-color 0.2s;
-      }
-
-      .timeline-item:hover {
-        border-color: rgba(85, 196, 241, 0.3);
-      }
-
-      .timeline-num {
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        background: linear-gradient(135deg, var(--brand), var(--brand-dark));
-        font-weight: 700;
-        font-size: 0.9rem;
-      }
-
-      .timeline-item h3 {
-        margin: 0 0 6px;
-        font-size: 1rem;
-      }
-
-      .timeline-item p {
-        margin: 0;
-        font-size: 0.9rem;
-        color: var(--text-muted);
-      }
-
-      /* Code block */
-      .code-panel {
-        border-radius: var(--radius);
-        overflow: hidden;
-        border: 1px solid var(--border);
-        background: #0a1018;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-      }
-
-      .code-header {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 18px;
-        background: rgba(255, 255, 255, 0.03);
-        border-bottom: 1px solid var(--border);
-        font-size: 0.82rem;
-        color: var(--text-muted);
-      }
-
-      .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-      }
-
-      .dot-r {
-        background: #ff5f57;
-      }
-      .dot-y {
-        background: #febc2e;
-      }
-      .dot-g {
-        background: #28c840;
-      }
-
-      pre {
-        margin: 0;
-        padding: 24px;
-        overflow-x: auto;
-        font-family: var(--mono);
-        font-size: 0.88rem;
-        line-height: 1.7;
-      }
-
-      .c-comment {
-        color: #6a9955;
-      }
-      .c-cmd {
-        color: #dcdcaa;
-      }
-      .c-flag {
-        color: #9cdcfe;
-      }
-      .c-path {
-        color: #ce9178;
-      }
-      .c-key {
-        color: #569cd6;
-      }
-
-      /* Use cases */
-      .use-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-      }
-
-      .use-card {
-        padding: 32px;
-        border-radius: var(--radius);
-        background: linear-gradient(145deg, rgba(0, 91, 172, 0.12), rgba(13, 20, 32, 0.8));
-        border: 1px solid var(--border);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .use-card::after {
-        content: "";
-        position: absolute;
-        top: -40%;
-        right: -20%;
-        width: 160px;
-        height: 160px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(85, 196, 241, 0.15), transparent 70%);
-        pointer-events: none;
-      }
-
-      .use-card .emoji {
-        font-size: 2rem;
-        margin-bottom: 12px;
-      }
-
-      .use-card h3 {
-        margin: 0 0 8px;
-        font-size: 1.1rem;
-      }
-
-      .use-card p {
-        margin: 0;
-        font-size: 0.9rem;
-        color: var(--text-muted);
-        position: relative;
-        z-index: 1;
-      }
-
-      /* Footer */
-      footer {
-        padding: 48px 0 32px;
-        border-top: 1px solid var(--border);
-        text-align: center;
-        color: var(--text-muted);
-        font-size: 0.88rem;
-      }
-
-      footer a {
-        color: var(--brand-light);
-      }
-
-      footer a:hover {
-        text-decoration: underline;
-      }
-
-      .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: 24px;
-        margin-bottom: 16px;
-        flex-wrap: wrap;
-      }
-
-      /* Scroll reveal */
-      .reveal {
-        opacity: 0;
-        transform: translateY(28px);
-        transition:
-          opacity 0.6s ease,
-          transform 0.6s ease;
-      }
-
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.4;
-        }
-      }
-
-      @media (max-width: 720px) {
-        .nav-links {
-          display: none;
-        }
-
-        .hero {
-          padding: 56px 0 72px;
-        }
-
-        .hero-stats {
-          gap: 20px;
-        }
-
-        section {
-          padding: 56px 0;
-        }
-      }
-    </style>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 48'%3E%3Crect width='64' height='48' rx='10' fill='%235ee7ff'/%3E%3Cpath d='M0 0h64v48H0z' fill='%23a8ff78' opacity='.55'/%3E%3Ctext x='32' y='30' text-anchor='middle' font-family='monospace' font-size='16' font-weight='900' fill='%2305070d'%3EUSP%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="site-noise" aria-hidden="true"></div>
 
-    <nav>
+    <nav class="topbar">
       <div class="wrap nav-inner">
-        <a class="logo" href="#">
-          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
-            <rect width="32" height="32" rx="8" fill="url(#g)" />
-            <path
-              d="M8 22V10h4.2l3.8 7.2L19.8 10H24v12h-3.4v-7.1l-3.6 7.1h-2.6l-3.6-7.1V22H8z"
-              fill="#fff"
-            />
-            <defs>
-              <linearGradient id="g" x1="0" y1="0" x2="32" y2="32">
-                <stop stop-color="#005BAC" />
-                <stop offset="1" stop-color="#55C4F1" />
-              </linearGradient>
-            </defs>
-          </svg>
-          UI Style Pilot
+        <a class="brand" href="index.html" aria-label="UI Style Pilot 首页">
+          <span class="usp-mark" aria-hidden="true">USP</span>
+          <span>UI Style Pilot</span>
         </a>
         <div class="nav-links">
-          <a href="#features">功能</a>
-          <a href="#tech">亮点</a>
-          <a href="#start">快速开始</a>
-          <a href="#scenarios">场景</a>
+          <a href="#system">系统</a>
+          <a href="#standards">规范</a>
+          <a href="#workflow">流程</a>
+          <a href="#start">开始</a>
           <a href="adoption-guide.html">使用手册</a>
         </div>
         <a
-          class="btn btn-primary"
+          class="nav-action"
           href="https://github.com/wanghuanlab/ui-style-pilot"
           target="_blank"
           rel="noreferrer"
@@ -593,202 +40,225 @@
       </div>
     </nav>
 
-    <header class="hero wrap">
-      <div class="badge">Open Source · MIT · AI-Ready</div>
-      <h1>让 AI 与人类<br />按同一套标准写后台页面</h1>
-      <p class="hero-sub">
-        UI Style Pilot 是一套前端 UI 规范治理工具包，将设计标准、Usp 组件模式与审查流程转化为可执行材料，解决
-        AI 快速生成页面带来的样式漂移与组件重复造轮子问题。
-      </p>
-      <div class="hero-actions">
-        <a
-          class="btn btn-primary"
-          href="https://github.com/wanghuanlab/ui-style-pilot"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path
-              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-            />
-          </svg>
-          查看 GitHub
+    <main>
+      <header class="hero wrap">
+        <div class="hero-copy">
+          <p class="eyebrow">Open source · AI-ready UI governance</p>
+          <h1>给 AI 生成的前端界面装上风格驾驶仪</h1>
+          <p class="hero-lede">
+            UI Style Pilot 把前端标准、Usp 组件模式、AI Skill 和审查清单整理成一套可执行上下文。
+            人类定规则，AI 按规则交付，后台页面不再越写越散。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="adoption-guide.html">
+              <span>阅读使用手册</span>
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M11.8 4.8 17 10l-5.2 5.2-1.1-1.1 3.3-3.3H3V9.2h11l-3.3-3.3 1.1-1.1Z" />
+              </svg>
+            </a>
+            <a
+              class="button button-secondary"
+              href="https://github.com/wanghuanlab/ui-style-pilot"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.2-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.6 2.7 3.4 1.9.1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0C17.6 4 18.6 4.3 18.6 4.3c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.3 11.3 0 0 0 12 .7Z"
+                />
+              </svg>
+              <span>查看源码</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="control-deck" aria-label="UI Style Pilot 规范控制台示意">
+          <div class="deck-header">
+            <span class="deck-title">Style Control Deck</span>
+            <span class="deck-status">LOCKED</span>
+          </div>
+          <div class="radar">
+            <div class="radar-ring ring-a"></div>
+            <div class="radar-ring ring-b"></div>
+            <div class="radar-sweep"></div>
+            <div class="radar-core">
+              <span>USP</span>
+              <small>Style Pilot</small>
+            </div>
+          </div>
+          <div class="signal-grid">
+            <div>
+              <strong>12+</strong>
+              <span>标准模块</span>
+            </div>
+            <div>
+              <strong>14</strong>
+              <span>组件模式</span>
+            </div>
+            <div>
+              <strong>4</strong>
+              <span>AI Skills</span>
+            </div>
+          </div>
+          <div class="scan-list">
+            <span>Token drift</span>
+            <span class="ok">PASS</span>
+            <span>Component reuse</span>
+            <span class="ok">PASS</span>
+            <span>Review checklist</span>
+            <span class="warn">WATCH</span>
+          </div>
+        </div>
+      </header>
+
+      <section id="system" class="section band">
+        <div class="wrap split-section reveal">
+          <div>
+            <p class="eyebrow">Why it exists</p>
+            <h2>AI 可以很快，界面仍然要稳</h2>
+            <p class="section-lede">
+              当团队把页面交给 AI 协作时，真正的风险不是写不出来，而是每次都写出一点点不同。
+              UI Style Pilot 把“先读规范、先找组件、最后自查”变成可复制的交付路径。
+            </p>
+          </div>
+          <div class="metric-row">
+            <article>
+              <b>01</b>
+              <h3>规范先行</h3>
+              <p>用 Markdown 描述设计 Token、布局、交互、编码规则。</p>
+            </article>
+            <article>
+              <b>02</b>
+              <h3>组件复用</h3>
+              <p>把列表、搜索、表格、表单等高频模式沉淀为 Usp 组件资产。</p>
+            </article>
+            <article>
+              <b>03</b>
+              <h3>审查闭环</h3>
+              <p>让 AI 和代码评审都对照同一份 Checklist 验收。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="standards" class="section">
+        <div class="wrap reveal">
+          <p class="eyebrow">What is included</p>
+          <h2>不是一页说明，而是一套前端治理材料</h2>
+          <div class="feature-grid">
+            <article class="feature-card accent-cyan">
+              <span>Tokens</span>
+              <h3>视觉与布局标准</h3>
+              <p>颜色、字号、间距、圆角、导航、页面模板和图表规则，给页面生成提供边界。</p>
+            </article>
+            <article class="feature-card accent-green">
+              <span>Components</span>
+              <h3>Usp 组件模式库</h3>
+              <p>记录 UspPage、UspSearchPanel、UspDataTable 等后台高频结构的职责和交互。</p>
+            </article>
+            <article class="feature-card accent-coral">
+              <span>Skills</span>
+              <h3>AI 工作流定义</h3>
+              <p>页面构建、设计审查、组件复用、样式迁移四类 Skill，让 AI 知道先做什么。</p>
+            </article>
+            <article class="feature-card accent-violet">
+              <span>Checklist</span>
+              <h3>上线前一致性验收</h3>
+              <p>从 Token、布局、导航、公共组件、交互、编码六个方向复查生成结果。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow" class="section band">
+        <div class="wrap reveal">
+          <p class="eyebrow">Operating loop</p>
+          <h2>把风格治理嵌进日常开发流程</h2>
+          <div class="pipeline">
+            <article>
+              <span>Read</span>
+              <h3>读规范</h3>
+              <p>从 USAGE、组件清单、审查清单开始，统一上下文。</p>
+            </article>
+            <article>
+              <span>Reuse</span>
+              <h3>找组件</h3>
+              <p>优先复用公共组件和已沉淀的 Usp Pattern。</p>
+            </article>
+            <article>
+              <span>Build</span>
+              <h3>写页面</h3>
+              <p>只补业务结构和必要局部样式，不另起一套视觉语言。</p>
+            </article>
+            <article>
+              <span>Review</span>
+              <h3>按清单验收</h3>
+              <p>让 AI 生成后的页面也能被同一套标准审查。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="start" class="section">
+        <div class="wrap reveal">
+          <div class="start-layout">
+            <div>
+              <p class="eyebrow">Quick start</p>
+              <h2>三步接入你的项目</h2>
+              <p class="section-lede">
+                复制规范，接入 AI Skill，再让每次页面生成都从同一份上下文开始。
+              </p>
+              <a class="button button-primary" href="adoption-guide.html">
+                <span>查看完整接入手册</span>
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M11.8 4.8 17 10l-5.2 5.2-1.1-1.1 3.3-3.3H3V9.2h11l-3.3-3.3 1.1-1.1Z" />
+                </svg>
+              </a>
+            </div>
+            <div class="code-panel">
+              <div class="code-top">
+                <span></span>
+                <span></span>
+                <span></span>
+                <b>terminal</b>
+              </div>
+              <pre><code><span class="code-comment"># 1. 克隆并预览</span>
+git clone https://github.com/wanghuanlab/ui-style-pilot.git
+cd ui-style-pilot
+npm install
+npm run dev
+
+<span class="code-comment"># 2. 复制规范和 AI Skills</span>
+cp -r docs/frontend-standards/ your-project/docs/
+cp -r docs/ai-skills/ your-project/docs/
+
+<span class="code-comment"># 3. 生成前读取关键上下文</span>
+docs/frontend-standards/USAGE.md
+docs/frontend-standards/09-review-checklist.md</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <a class="brand" href="index.html" aria-label="UI Style Pilot 首页">
+          <span class="usp-mark" aria-hidden="true">USP</span>
+          <span>UI Style Pilot</span>
         </a>
-        <a class="btn btn-ghost" href="#start">快速开始</a>
-        <a class="btn btn-ghost" href="adoption-guide.html">使用手册</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <strong>12+</strong>
-          <span>规范文档模块</span>
-        </div>
-        <div class="stat">
-          <strong>14</strong>
-          <span>Usp 组件模式</span>
-        </div>
-        <div class="stat">
-          <strong>4</strong>
-          <span>AI Skill 定义</span>
-        </div>
-        <div class="stat">
-          <strong>0</strong>
-          <span>重型 UI 库依赖</span>
-        </div>
-      </div>
-    </header>
-
-    <section id="features">
-      <div class="wrap reveal">
-        <span class="section-label">Core Features</span>
-        <h2>核心价值，开箱即用</h2>
-        <p class="section-desc">不只是文档，而是让人类和 AI 都能遵循的完整治理体系。</p>
-        <div class="card-grid">
-          <article class="card">
-            <div class="card-icon">📐</div>
-            <h3>完整前端规范体系</h3>
-            <p>Token、布局、导航、交互、编码、图表等 12+ 篇文档，统一团队视觉与实现边界。</p>
-          </article>
-          <article class="card">
-            <div class="card-icon">🧩</div>
-            <h3>Usp 组件模式库</h3>
-            <p>UspPage、UspSearchPanel、UspDataTable 等 Pattern 文档，列表/表单/详情页不再各写一套。</p>
-          </article>
-          <article class="card">
-            <div class="card-icon">🤖</div>
-            <h3>AI Skills 工作流</h3>
-            <p>页面构建、设计审查、组件复用、样式迁移四大 Skill，让 AI 生成前先读规范、生成后自查。</p>
-          </article>
-          <article class="card">
-            <div class="card-icon">📋</div>
-            <h3>页面模板 + 审查清单</h3>
-            <p>按列表/表单/抽屉等模板搭骨架，提交前用 Checklist 做一致性验收，减少 Review 摩擦。</p>
-          </article>
-          <article class="card">
-            <div class="card-icon">🎨</div>
-            <h3>设计源映射</h3>
-            <p>将品牌色、字号、间距映射为后台 Token，降低设计稿到代码的「翻译损耗」。</p>
-          </article>
-          <article class="card">
-            <div class="card-icon">⚡</div>
-            <h3>轻量预览应用</h3>
-            <p>Vite + Vue 3 落地页，零重型依赖，Fork 即用，GitHub Pages 自动部署。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="tech">
-      <div class="wrap reveal">
-        <span class="section-label">Tech Highlights</span>
-        <h2>值得开发者关注的设计决策</h2>
-        <p class="section-desc">规范即上下文，治理嵌入流程，而非事后补课。</p>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-num">01</div>
-            <div>
-              <h3>规范 → Skill → 审查 闭环</h3>
-              <p>文档、AI 提示词模板、Skill 定义三位一体，形成可重复的执行路径。</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-num">02</div>
-            <div>
-              <h3>组件成熟度分级</h3>
-              <p>draft / stable / deprecated / legacy 四级标记，支持渐进式迁移与试用。</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-num">03</div>
-            <div>
-              <h3>B 端场景深度覆盖</h3>
-              <p>列表+筛选+表格+列配置、表单分区+页签、左树右表、状态语义色等高频模式一应俱全。</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-num">04</div>
-            <div>
-              <h3>Markdown 即 Agent 上下文</h3>
-              <p>开源、可版本管理，直接作为 Cursor / Copilot 等工具的读取材料，无需额外平台。</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-num">05</div>
-            <div>
-              <h3>CI + Pages 工程化</h3>
-              <p>推送即构建校验、自动部署预览，协作与演示门槛极低。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="start">
-      <div class="wrap reveal">
-        <span class="section-label">Quick Start</span>
-        <h2>三步上手</h2>
-        <p class="section-desc">Fork 仓库，复制规范到你的项目，让 AI 先读文档再写代码。</p>
-        <div class="code-panel">
-          <div class="code-header">
-            <span class="dot dot-r"></span>
-            <span class="dot dot-y"></span>
-            <span class="dot dot-g"></span>
-            <span>terminal</span>
-          </div>
-          <pre><code><span class="c-comment"># 1. 克隆并启动预览</span>
-<span class="c-cmd">git clone</span> <span class="c-path">https://github.com/wanghuanlab/ui-style-pilot.git</span>
-<span class="c-cmd">cd</span> ui-style-pilot
-<span class="c-cmd">npm install</span>
-<span class="c-cmd">npm run dev</span>
-
-<span class="c-comment"># 2. 复制规范到你的 Vue 项目</span>
-<span class="c-cmd">cp -r</span> docs/frontend-standards/ <span class="c-path">your-project/docs/</span>
-<span class="c-cmd">cp -r</span> docs/ai-skills/ <span class="c-path">your-project/docs/</span>
-
-<span class="c-comment"># 3. 让 AI 生成页面前先读这些文件</span>
-<span class="c-key">docs/frontend-standards/USAGE.md</span>
-<span class="c-key">docs/frontend-standards/components/README.md</span>
-<span class="c-key">docs/frontend-standards/09-review-checklist.md</span></code></pre>
-        </div>
-      </div>
-    </section>
-
-    <section id="scenarios">
-      <div class="wrap reveal">
-        <span class="section-label">Use Cases</span>
-        <h2>典型适用场景</h2>
-        <p class="section-desc">为 AI 时代的前端团队而生，也适合任何需要 UI 一致性的 B 端项目。</p>
-        <div class="use-grid">
-          <article class="use-card">
-            <div class="emoji">👥</div>
-            <h3>前端团队建立规范</h3>
-            <p>Tech Lead 将零散的设计约定沉淀为可执行文档，减少 Code Review 中反复纠样式与组件结构。</p>
-          </article>
-          <article class="use-card">
-            <div class="emoji">🚀</div>
-            <h3>AI 辅助开发治理</h3>
-            <p>开发者挂载 Skill 后，AI 生成页面自动对齐 Usp 组件与 Token，产出可直接合入主干。</p>
-          </article>
-          <article class="use-card">
-            <div class="emoji">🏢</div>
-            <h3>企业后台数字化</h3>
-            <p>没有完整 Design System 团队，也能获得企业级后台的一致性与可维护性基线。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="wrap">
         <div class="footer-links">
-          <a href="adoption-guide.html">接入使用手册</a>
+          <a href="adoption-guide.html">使用手册</a>
           <a href="https://github.com/wanghuanlab/ui-style-pilot" target="_blank" rel="noreferrer"
-            >GitHub 仓库</a
+            >GitHub</a
           >
-          <a href="https://github.com/wanghuanlab/ui-style-pilot/blob/main/README.zh-CN.md" target="_blank" rel="noreferrer"
+          <a
+            href="https://github.com/wanghuanlab/ui-style-pilot/blob/main/README.zh-CN.md"
+            target="_blank"
+            rel="noreferrer"
             >中文 README</a
           >
         </div>
-        <p>UI Style Pilot · MIT License · 让人类与 AI 按同一套标准交付前端</p>
       </div>
     </footer>
 
@@ -802,9 +272,9 @@
             }
           });
         },
-        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+        { threshold: 0.12, rootMargin: "0px 0px -32px 0px" }
       );
-      reveals.forEach((el) => observer.observe(el));
+      reveals.forEach((item) => observer.observe(item));
     </script>
   </body>
 </html>
